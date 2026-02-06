@@ -1,206 +1,114 @@
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  FiMail,
-  FiMapPin,
-  FiSend,
-  FiCheckCircle,
-} from 'react-icons/fi';
+import { FiMail, FiMapPin, FiCopy, FiCheck, FiArrowUpRight } from 'react-icons/fi';
 import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import './Contact.scss';
 
 const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
+  const [copied, setCopied] = useState(false);
+  const email = "shuchinthas397@gmail.com";
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
-    setForm({ name: '', email: '', subject: '', message: '' });
+  const handleCopy = () => {
+    navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <section className="contact section" id="contact">
-      <motion.div
-        className="section-header"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <h2 className="section-title">
-          Get In <span className="accent">Touch</span>
-        </h2>
-        <div className="header-line" />
-        <p className="section-subtitle">
-          Have a project in mind? Let's work together to bring your ideas to life
-        </p>
-      </motion.div>
-
-      <div className="contact-content">
-        <motion.div
-          className="contact-info"
-          initial={{ opacity: 0, x: -30 }}
+      <div className="contact-container">
+        {/* Left Side: Call to Action */}
+        <motion.div 
+          className="contact-left"
+          initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.6 }}
         >
-          <h3 className="info-title">Let's talk about everything!</h3>
-          <p className="info-text">
-            I'm always open to new opportunities, collaborations, and interesting
-            conversations. Whether you have a question or just want to say hi,
-            feel free to reach out.
+          <h2 className="contact-heading">
+            Let's build something <span className="accent">amazing</span> together.
+          </h2>
+          <p className="contact-desc">
+            I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out through any of the channels below!.
           </p>
-
-          <div className="info-items">
-            <div className="info-item">
-              <div className="info-icon">
-                <FiMail />
-              </div>
-              <div className="info-details">
-                <span className="info-label">Email</span>
-                <span className="info-value">shuchinthas397@gmail.com</span>
-              </div>
-            </div>
-            <div className="info-item">
-              <div className="info-icon">
-                <FiMapPin />
-              </div>
-              <div className="info-details">
-                <span className="info-label">Location</span>
-                <span className="info-value">Milpitas, CA</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="social-links">
-            {[
-              { href: 'https://github.com/shuchintha', icon: <FaGithub />, label: 'GitHub' },
-              { href: 'https://linkedin.com/in/shuchinthasrinivasa', icon: <FaLinkedinIn />, label: 'LinkedIn' },
-              { href: 'https://twitter.com/shuchintha', icon: <FaTwitter />, label: 'Twitter' },
-            ].map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                whileHover={{ y: -3, scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-              >
-                {link.icon}
-              </motion.a>
-            ))}
+          
+          <div className="location-badge">
+            <div className="pulse-dot"></div>
+            Based in Milpitas, CA
           </div>
         </motion.div>
 
-        <motion.div
-          className="contact-form-wrapper"
-          initial={{ opacity: 0, x: 30 }}
+        {/* Right Side: Action Links */}
+        <motion.div 
+          className="contact-right"
+          initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <AnimatePresence mode="wait">
-            {submitted ? (
-              <motion.div
-                className="form-success"
-                key="success"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
+          <div className="contact-mini">
+            {/* Email Pill */}
+            <div className="email-pill">
+              <FiMail className="pill-icon" />
+              <a href={`mailto:${email}`} className="pill-text">{email}</a>
+              <button className="copy-btn" onClick={handleCopy} aria-label="Copy email">
+                 <AnimatePresence mode='wait'>
+                    {copied ? (
+                      <motion.span
+                        key="check"
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.5, opacity: 0 }}
+                      >
+                        <FiCheck />
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="copy"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                      >
+                        <FiCopy />
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+              </button>
+            </div>
+
+            {/* Social Row */}
+            <div className="social-row">
+              <a 
+                href="https://linkedin.com/in/shuchinthasrinivasa" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="social-btn"
+                aria-label="LinkedIn"
               >
-                <FiCheckCircle className="success-icon" />
-                <h4 className="success-title">Message Sent!</h4>
-                <p className="success-text">
-                  Thank you for reaching out. I'll get back to you soon.
-                </p>
-              </motion.div>
-            ) : (
-              <motion.form
-                key="form"
-                onSubmit={handleSubmit}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                <FaLinkedinIn />
+              </a>
+
+              <a 
+                href="https://github.com/shuchintha" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="social-btn"
+                aria-label="GitHub"
               >
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="Your name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="your@email.com"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="subject">Subject</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    placeholder="What's this about?"
-                    value={form.subject}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    placeholder="Tell me about your project..."
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <motion.button
-                  type="submit"
-                  className="btn-submit"
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <FiSend /> Send Message
-                </motion.button>
-              </motion.form>
-            )}
-          </AnimatePresence>
+                <FaGithub />
+              </a>
+
+              <a 
+                href="https://twitter.com/shuchintha" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="social-btn"
+                aria-label="Twitter"
+              >
+                <FaTwitter />
+              </a>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

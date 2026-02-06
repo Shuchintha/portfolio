@@ -96,7 +96,7 @@ export const experiences: Experience[] = [
     duration: 'Jan 2021 – Oct 2021',
     location: 'San Jose, CA',
     description: [
-      'Built complex Angular applications with NgRx state management and RxJS-driven data streams.',
+      'Built complex React applications with Redux state management and Restful APIs.',
     ],
     technologies: ['Angular', 'React', 'TypeScript',  'GraphQL'],
   },
@@ -107,7 +107,7 @@ export const experiences: Experience[] = [
     duration: 'Feb 2019 - Dec 2020',
     location: 'New Haven, CT',
     description: [
-      'Developed and shipped customer-facing dashboards using React, Context API, and Tailwind CSS.',
+      'Developed and shipped customer-facing dashboards using React, Context API, and CSS.',
     ],
     technologies: ['React', 'JavaScript', 'RESTful APIs', 'Node.js'],
   },
