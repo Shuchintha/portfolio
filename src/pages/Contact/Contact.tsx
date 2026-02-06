@@ -43,6 +43,7 @@ const Contact = () => {
         <h2 className="section-title">
           Get In <span className="accent">Touch</span>
         </h2>
+        <div className="header-line" />
         <p className="section-subtitle">
           Have a project in mind? Let's work together to bring your ideas to life
         </p>

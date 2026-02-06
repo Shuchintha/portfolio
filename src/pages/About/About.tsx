@@ -53,6 +53,7 @@ const About = () => {
         <h2 className="section-title">
           About <span className="accent">Me</span>
         </h2>
+        <div className="header-line" />
         <p className="section-subtitle">
           A passionate developer who turns ideas into elegant, scalable solutions
         </p>

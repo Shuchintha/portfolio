@@ -33,17 +33,6 @@
       }
     }
   }
-
-  .header-line {
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, $light-accent, transparent);
-    border-radius: 2px;
-    
-    [data-theme='dark'] & {
-      background: linear-gradient(90deg, $dark-accent-light, transparent);
-    }
-  }
 }
 
 .skills-interface {

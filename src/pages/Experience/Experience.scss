@@ -56,6 +56,7 @@
   // ─── Scrollable track ───
   .exp-track {
     display: flex;
+    align-items: flex-start; // Prevent other cards from stretching when one expands
     gap: $space-lg;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -141,7 +142,7 @@
     .company {
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--accent);
+      color: #258ff7;
     }
 
     .duration {
@@ -180,6 +181,11 @@
       }
       [data-theme='light'] & {
         color: $light-text-muted;
+      }
+      
+      &.expanded {
+        -webkit-line-clamp: unset;
+        overflow: visible;
       }
     }
   }

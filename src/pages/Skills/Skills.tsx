@@ -39,15 +39,18 @@ const Skills = () => {
       <div className="container">
         <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <h2 className="section-title">
-            <span className="title-highlight">Technical</span> Command
+            Technical <span className="accent">Command</span>
           </h2>
           <div className="header-line" />
+          <p className="section-subtitle">
+            A comprehensive overview of my technical skills and tools
+          </p>
         </motion.div>
 
         <div className="skills-interface">

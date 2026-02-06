@@ -125,6 +125,14 @@ a {
     @include section-title;
   }
 
+  .header-line {
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin: $space-md auto 0;
+  }
+
   .section-subtitle {
     font-size: 1.1rem;
     font-weight: 400;

@@ -80,20 +80,20 @@ export const skillCategories: SkillCategory[] = [
 export const experiences: Experience[] = [
   {
     id: 1,
-    role: 'Senior Frontend Developer',
-    company: 'Tech Innovations Inc.',
-    duration: 'Jan 2023 – Present',
+    role: 'React Developer',
+    company: 'USBank Inc.',
+    duration: 'Oct 2021 – Dec 2025',
     location: 'Milpitas, CA',
     description: [
-      'Led migration of a monolithic Angular app to micro-frontend React architecture, improving load times by 40%.',
+      'Architected micro-frontend applications integrated within a monolithic architecture using React and Angular, improving system scalability and performance.',
     ],
     technologies: ['React', 'TypeScript', 'Redux Toolkit', 'GraphQL', 'Material UI'],
   },
   {
     id: 2,
-    role: 'Frontend Developer',
-    company: 'DataStream Solutions',
-    duration: 'Jun 2021 – Dec 2022',
+    role: 'React Developer',
+    company: 'Sisense',
+    duration: 'Jan 2021 – Oct 2021',
     location: 'Austin, TX',
     description: [
       'Built complex Angular applications with NgRx state management and RxJS-driven data streams.',
@@ -102,9 +102,9 @@ export const experiences: Experience[] = [
   },
   {
     id: 3,
-    role: 'React Developer',
-    company: 'CloudNine Systems',
-    duration: 'Aug 2020 – May 2021',
+    role: 'Software Engineer',
+    company: 'Inboxhealth',
+    duration: 'Feb 2019 - Dec 2020',
     location: 'San Jose, CA',
     description: [
       'Developed and shipped customer-facing dashboards using React, Context API, and Tailwind CSS.',
@@ -113,9 +113,9 @@ export const experiences: Experience[] = [
   },
   {
     id: 4,
-    role: 'Web Developer',
-    company: 'CreativeEdge Digital',
-    duration: 'Jan 2020 – Jul 2020',
+    role: 'Software Engineer',
+    company: 'Perpetual',
+    duration: 'Jan 2018 – Jan 2019',
     location: 'Remote',
     description: [
       'Developed responsive, pixel-perfect web applications using React with functional components and Hooks.',
@@ -124,9 +124,9 @@ export const experiences: Experience[] = [
   },
   {
     id: 5,
-    role: 'Junior Developer',
-    company: 'BrightPath Labs',
-    duration: 'Jun 2019 – Dec 2019',
+    role: 'Software Engineer',
+    company: 'Accenture Solutions Private Limited',
+    duration: 'Jan 2016 – Jan 2018 ',
     location: 'Bangalore, India',
     description: [
       'Built internal tools and contributed to front-end features using HTML, CSS, JavaScript, and jQuery.',
