@@ -85,7 +85,7 @@ export const experiences: Experience[] = [
     duration: 'Oct 2021 – Dec 2025',
     location: 'Minneapolis, MN',
     description: [
-      'Architected micro-frontend applications integrated within a monolithic architecture using React and Angular, improving system scalability and performance.',
+      'Architected micro-frontend applications integrated within a mono repo architecture using React and Angular, improving system scalability and performance.',
     ],
     technologies: ['React', 'TypeScript', 'Redux Toolkit', 'GraphQL', 'Material UI'],
   },
