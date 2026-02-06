@@ -177,6 +177,12 @@
   flex: 1;
   position: relative;
   padding: $space-3xl;
+  padding-top: $space-md;
+
+   @include tablet {
+    padding: $space-2xl;
+    padding-top: $space-3xl;
+  }
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -83,7 +83,7 @@ export const experiences: Experience[] = [
     role: 'React Developer',
     company: 'USBank Inc.',
     duration: 'Oct 2021 – Dec 2025',
-    location: 'Milpitas, CA',
+    location: 'Minneapolis, MN',
     description: [
       'Architected micro-frontend applications integrated within a monolithic architecture using React and Angular, improving system scalability and performance.',
     ],
@@ -94,33 +94,33 @@ export const experiences: Experience[] = [
     role: 'React Developer',
     company: 'Sisense',
     duration: 'Jan 2021 – Oct 2021',
-    location: 'Austin, TX',
+    location: 'San Jose, CA',
     description: [
       'Built complex Angular applications with NgRx state management and RxJS-driven data streams.',
     ],
-    technologies: ['Angular', 'TypeScript', 'NgRx', 'RxJS', 'RESTful APIs'],
+    technologies: ['Angular', 'React', 'TypeScript',  'GraphQL'],
   },
   {
     id: 3,
     role: 'Software Engineer',
     company: 'Inboxhealth',
     duration: 'Feb 2019 - Dec 2020',
-    location: 'San Jose, CA',
+    location: 'New Haven, CT',
     description: [
       'Developed and shipped customer-facing dashboards using React, Context API, and Tailwind CSS.',
     ],
-    technologies: ['React', 'JavaScript', 'Tailwind CSS', 'Context API', 'Docker'],
+    technologies: ['React', 'JavaScript', 'RESTful APIs', 'Node.js'],
   },
   {
     id: 4,
     role: 'Software Engineer',
     company: 'Perpetual',
     duration: 'Jan 2018 – Jan 2019',
-    location: 'Remote',
+    location: 'New Haven, CT	',
     description: [
       'Developed responsive, pixel-perfect web applications using React with functional components and Hooks.',
     ],
-    technologies: ['React', 'JavaScript', 'SASS', 'REST APIs', 'Figma'],
+    technologies: ['React', 'JavaScript', 'SASS', 'RESTful APIs'],
   },
   {
     id: 5,

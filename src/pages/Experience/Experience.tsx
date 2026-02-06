@@ -45,36 +45,38 @@ const Experience = () => {
             <motion.div
               layout
               key={exp.id}
-              className="exp-card"
+              className={`exp-card ${expandedId === exp.id ? 'expanded' : ''}`}
               onMouseEnter={() => setExpandedId(exp.id)}
               onMouseLeave={() => setExpandedId(null)}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{
-                layout: { duration: 0.3, type: 'spring', stiffness: 300, damping: 30 },
+                layout: { duration: 0.4, type: 'spring', stiffness: 200, damping: 25 },
                 opacity: { duration: 0.5 },
                 y: { duration: 0.5, delay: idx * 0.08, ease: [0.25, 0.1, 0.25, 1] },
               }}
             >
               <div className="card-index">{String(idx + 1).padStart(2, '0')}</div>
-              <div className="card-content">
+              <motion.div layout="position" className="card-content">
                 <h3 className="role">{exp.role}</h3>
                 <p className="company">{exp.company}</p>
                 <span className="duration">
                   <FiCalendar /> {exp.duration}
                 </span>
-                <motion.p layout className={`desc ${expandedId === exp.id ? 'expanded' : ''}`}>
-                  {exp.description.join(' ')}
-                </motion.p>
-              </div>
-              <div className="card-tech">
+                <motion.div layout="position" className={`desc-wrapper ${expandedId === exp.id ? 'expanded' : ''}`}>
+                   <p className="desc">
+                    {exp.description.join(' ')}
+                   </p>
+                </motion.div>
+              </motion.div>
+              <motion.div layout="position" className="card-tech">
                 {exp.technologies.map((tech) => (
                   <span key={tech} className="tech-tag">
                     {tech}
                   </span>
                 ))}
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

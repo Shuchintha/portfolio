@@ -80,12 +80,21 @@
   .exp-card {
     @include card;
     flex: 0 0 280px;
+    height: 300px;   // Reduced fixed height
+    min-height: 300px;
     scroll-snap-align: start;
     padding: $space-xl $space-lg;
     display: flex;
     flex-direction: column;
     gap: $space-md;
     overflow: hidden;
+    position: relative; // For layout animation context
+
+    &.expanded {
+      height: auto;
+      min-height: 300px;
+      z-index: 10; // Ensure it stays on top while expanding
+    }
 
     &:hover {
       .card-index {
@@ -123,6 +132,8 @@
     flex-direction: column;
     gap: $space-xs;
     flex: 1;
+    min-height: 0; // Allow shrinking
+    overflow: hidden; // Contain overflows
 
     .role {
       font-family: $font-display;
@@ -151,6 +162,7 @@
       gap: $space-xs;
       font-size: 0.78rem;
       margin-top: 2px;
+      margin-bottom: $space-xs; // Added spacing
 
       [data-theme='dark'] & {
         color: $dark-text-muted;
@@ -166,27 +178,30 @@
       }
     }
 
-    .desc {
-      font-size: 0.82rem;
-      line-height: 1.55;
-      letter-spacing: -0.003em;
-      margin-top: $space-xs;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+    .desc-wrapper {
+        min-height: 0;
+        
+        .desc {
+            font-size: 0.82rem;
+            line-height: 1.55;
+            letter-spacing: -0.003em;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
 
-      [data-theme='dark'] & {
-        color: $dark-text-muted;
-      }
-      [data-theme='light'] & {
-        color: $light-text-muted;
-      }
-      
-      &.expanded {
-        -webkit-line-clamp: unset;
-        overflow: visible;
-      }
+            [data-theme='dark'] & {
+                color: $dark-text-muted;
+            }
+            [data-theme='light'] & {
+                color: $light-text-muted;
+            }
+        }
+
+        &.expanded .desc {
+            -webkit-line-clamp: unset;
+            overflow: visible;
+        }
     }
   }
 
@@ -196,6 +211,7 @@
     flex-wrap: wrap;
     gap: 6px;
     margin-top: auto;
+    flex-shrink: 0; // Prevent compression of tags
 
     .tech-tag {
       padding: 3px 10px;
