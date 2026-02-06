@@ -25,7 +25,7 @@
       &.orb-1 {
         width: 400px;
         height: 400px;
-        background: $accent;
+        background: var(--accent);
         top: -100px;
         right: -100px;
         animation-delay: 0s;
@@ -43,7 +43,7 @@
       &.orb-3 {
         width: 200px;
         height: 200px;
-        background: $accent-light;
+        background: var(--accent-light);
         top: 50%;
         left: 50%;
         animation-delay: 4s;
@@ -58,8 +58,8 @@
     z-index: 0;
     opacity: 0.03;
     background-image:
-      linear-gradient($accent 1px, transparent 1px),
-      linear-gradient(90deg, $accent 1px, transparent 1px);
+      linear-gradient(var(--accent) 1px, transparent 1px),
+      linear-gradient(90deg, var(--accent) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
@@ -88,7 +88,7 @@
     .hero-greeting {
       font-family: $font-mono;
       font-size: 1.1rem;
-      color: $accent;
+      color: var(--accent);
       margin-bottom: $space-md;
       display: flex;
       align-items: center;
@@ -198,8 +198,8 @@
         inset: -8px;
         border-radius: 50%;
         border: 2px solid transparent;
-        border-top-color: $accent;
-        border-right-color: $accent-light;
+        border-top-color: var(--accent);
+        border-right-color: var(--accent-light);
         animation: spin 6s linear infinite;
       }
 
@@ -227,11 +227,11 @@
 
         [data-theme='dark'] & {
           background: linear-gradient(135deg, $dark-surface, $dark-surface-alt);
-          color: $accent;
+          color: var(--accent);
         }
         [data-theme='light'] & {
           background: linear-gradient(135deg, $light-surface, $light-surface-alt);
-          color: $accent;
+          color: var(--accent);
         }
 
         @include tablet {
@@ -243,7 +243,7 @@
           position: absolute;
           inset: 0;
           border-radius: 50%;
-          background: linear-gradient(135deg, transparent 40%, rgba($accent, 0.1));
+          background: linear-gradient(135deg, transparent 40%, rgba(var(--accent-rgb), 0.1));
         }
       }
 
@@ -330,7 +330,7 @@
         left: 0;
         width: 100%;
         height: 50%;
-        background: $accent;
+        background: var(--accent);
         animation: scrollLine 2s ease-in-out infinite;
       }
     }

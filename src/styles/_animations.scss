@@ -63,16 +63,16 @@
 // ─── Glow Pulse ───
 @keyframes glowPulse {
   0%, 100% {
-    box-shadow: 0 0 20px $accent-glow;
+    box-shadow: 0 0 20px var(--accent-glow);
   }
   50% {
-    box-shadow: 0 0 40px $accent-glow, 0 0 60px rgba(108, 99, 255, 0.15);
+    box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(var(--accent-rgb), 0.15);
   }
 }
 
 // ─── Typing Cursor ───
 @keyframes blink {
-  0%, 50% { border-color: $accent; }
+  0%, 50% { border-color: var(--accent); }
   51%, 100% { border-color: transparent; }
 }
 

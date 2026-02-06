@@ -52,10 +52,10 @@
   &:hover {
     transform: translateY(-4px);
     [data-theme='dark'] & {
-      box-shadow: 0 12px 40px rgba(108, 99, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.15);
     }
     [data-theme='light'] & {
-      box-shadow: 0 12px 40px rgba(108, 99, 255, 0.12);
+      box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.12);
     }
   }
 }
@@ -70,7 +70,7 @@
   display: inline-block;
 
   .accent {
-    color: $accent;
+    color: var(--accent);
   }
 
   &::after {
@@ -80,7 +80,7 @@
     left: 0;
     width: 60px;
     height: 4px;
-    background: linear-gradient(90deg, $accent, $accent-light);
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
     border-radius: 2px;
   }
 }
@@ -97,7 +97,7 @@
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  background: linear-gradient(135deg, $accent, $accent-light);
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
   color: #fff;
   position: relative;
   overflow: hidden;
@@ -117,7 +117,7 @@
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px $accent-glow;
+    box-shadow: 0 8px 25px var(--accent-glow);
 
     &::before {
       left: 100%;
@@ -135,28 +135,28 @@
   align-items: center;
   gap: $space-sm;
   padding: $space-md $space-xl;
-  border: 2px solid $accent;
+  border: 2px solid var(--accent);
   border-radius: 50px;
   font-family: $font-primary;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
   background: transparent;
-  color: $accent;
+  color: var(--accent);
   transition: all $transition-normal;
   text-decoration: none;
 
   &:hover {
-    background: $accent;
+    background: var(--accent);
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px $accent-glow;
+    box-shadow: 0 8px 25px var(--accent-glow);
   }
 }
 
 // ─── Text Gradient ───
 @mixin text-gradient {
-  background: linear-gradient(135deg, $accent, $accent-light, $success);
+  background: linear-gradient(135deg, var(--accent), var(--accent-light), $success);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -167,7 +167,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(108, 99, 255, 0.05) 50%,
+    rgba(var(--accent-rgb), 0.05) 50%,
     transparent 100%
   );
   background-size: 200% 100%;

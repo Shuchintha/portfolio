@@ -44,11 +44,11 @@
       }
 
       &:hover {
-        background: $accent;
+        background: var(--accent);
         color: #fff;
-        border-color: $accent;
+        border-color: var(--accent);
         transform: translateY(-3px);
-        box-shadow: 0 6px 20px $accent-glow;
+        box-shadow: 0 6px 20px var(--accent-glow);
       }
     }
   }
@@ -70,7 +70,7 @@
     }
 
     .name {
-      color: $accent;
+      color: var(--accent);
       font-weight: 600;
     }
   }

@@ -27,7 +27,7 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, $accent, $accent-light);
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
       opacity: 0;
       transition: opacity $transition-normal;
     }
@@ -48,14 +48,14 @@
         height: 48px;
         border-radius: $border-radius-sm;
         font-size: 1.3rem;
-        color: $accent;
+        color: var(--accent);
         flex-shrink: 0;
 
         [data-theme='dark'] & {
-          background: rgba($accent, 0.12);
+          background: rgba(var(--accent-rgb), 0.12);
         }
         [data-theme='light'] & {
-          background: rgba($accent, 0.08);
+          background: rgba(var(--accent-rgb), 0.08);
         }
       }
 
@@ -100,7 +100,7 @@
           font-family: $font-mono;
           font-size: 0.85rem;
           font-weight: 600;
-          color: $accent;
+          color: var(--accent);
         }
       }
 
@@ -121,7 +121,7 @@
         .skill-fill {
           height: 100%;
           border-radius: 3px;
-          background: linear-gradient(90deg, $accent, $accent-light);
+          background: linear-gradient(90deg, var(--accent), var(--accent-light));
           position: relative;
           transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -133,8 +133,8 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: $accent-light;
-            box-shadow: 0 0 10px $accent-glow;
+            background: var(--accent-light);
+            box-shadow: 0 0 10px var(--accent-glow);
           }
         }
       }

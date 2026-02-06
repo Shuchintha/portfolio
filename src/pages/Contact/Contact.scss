@@ -63,14 +63,14 @@
           height: 48px;
           border-radius: $border-radius-sm;
           font-size: 1.2rem;
-          color: $accent;
+          color: var(--accent);
           flex-shrink: 0;
 
           [data-theme='dark'] & {
-            background: rgba($accent, 0.12);
+            background: rgba(var(--accent-rgb), 0.12);
           }
           [data-theme='light'] & {
-            background: rgba($accent, 0.08);
+            background: rgba(var(--accent-rgb), 0.08);
           }
         }
 
@@ -129,11 +129,11 @@
         }
 
         &:hover {
-          background: $accent;
+          background: var(--accent);
           color: #fff;
-          border-color: $accent;
+          border-color: var(--accent);
           transform: translateY(-3px);
-          box-shadow: 0 6px 20px $accent-glow;
+          box-shadow: 0 6px 20px var(--accent-glow);
         }
       }
     }
@@ -191,8 +191,8 @@
         }
 
         &:focus {
-          border-color: $accent;
-          box-shadow: 0 0 0 3px rgba($accent, 0.1);
+          border-color: var(--accent);
+          box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
         }
       }
 
