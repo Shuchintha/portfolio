@@ -27,7 +27,7 @@ const Home = () => {
             Shuchintha<br />Srinivasa
           </motion.h1>
           <motion.h2 className="hero-title" variants={fadeUp} custom={2}>
-            Senior Frontend Developer
+            Frontend Developer
           </motion.h2>
           <motion.p className="hero-summary" variants={fadeUp} custom={3}>
             Building enterprise-grade web applications with React, Angular &amp; TypeScript.
