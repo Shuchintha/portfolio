@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMail, FiMapPin, FiCopy, FiCheck, FiArrowUpRight } from 'react-icons/fi';
+import { FiMail, FiCopy, FiCheck } from 'react-icons/fi';
 import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import './Contact.scss';
 
