@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   FaReact,
   FaCode,
@@ -40,20 +41,35 @@ const Skills = () => {
 
   return (
     <section className="skills section" id="skills" ref={ref}>
-      <div className="section-header">
+      <motion.div
+        className="section-header"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <h2 className="section-title">
           My <span className="accent">Skills</span>
         </h2>
         <p className="section-subtitle">
           Technologies and tools I work with to build exceptional digital products
         </p>
-      </div>
+      </motion.div>
 
       <div className="skills-grid">
         {skillCategories.map((category, catIdx) => (
-          <div
+          <motion.div
             key={category.title}
-            className={`skill-category animate-fade-in-up stagger-${catIdx + 1}`}
+            className="skill-category"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{
+              duration: 0.5,
+              delay: catIdx * 0.08,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+            whileHover={{ y: -4, transition: { duration: 0.25 } }}
           >
             <div className="category-header">
               <div className="category-icon">
@@ -69,15 +85,17 @@ const Skills = () => {
                     <span className="skill-percent">{skill.level}%</span>
                   </div>
                   <div className="skill-bar">
-                    <div
+                    <motion.div
                       className="skill-fill"
-                      style={{ width: visible ? `${skill.level}%` : '0%' }}
+                      initial={{ width: 0 }}
+                      animate={visible ? { width: `${skill.level}%` } : { width: 0 }}
+                      transition={{ duration: 1.2, delay: catIdx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                     />
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

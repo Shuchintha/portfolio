@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   FiMail,
   FiMapPin,
@@ -25,7 +26,6 @@ const Contact = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 5000);
     setForm({ name: '', email: '', subject: '', message: '' });
@@ -33,17 +33,29 @@ const Contact = () => {
 
   return (
     <section className="contact section" id="contact">
-      <div className="section-header">
+      <motion.div
+        className="section-header"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <h2 className="section-title">
           Get In <span className="accent">Touch</span>
         </h2>
         <p className="section-subtitle">
           Have a project in mind? Let's work together to bring your ideas to life
         </p>
-      </div>
+      </motion.div>
 
       <div className="contact-content">
-        <div className="contact-info animate-fade-in-up">
+        <motion.div
+          className="contact-info"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <h3 className="info-title">Let's talk about everything!</h3>
           <p className="info-text">
             I'm always open to new opportunities, collaborations, and interesting
@@ -73,84 +85,122 @@ const Contact = () => {
           </div>
 
           <div className="social-links">
-            <a href="https://github.com/shuchintha" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <FaGithub />
-            </a>
-            <a href="https://linkedin.com/in/shuchintha" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <FaLinkedinIn />
-            </a>
-            <a href="https://twitter.com/shuchintha" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <FaTwitter />
-            </a>
+            {[
+              { href: 'https://github.com/shuchintha', icon: <FaGithub />, label: 'GitHub' },
+              { href: 'https://linkedin.com/in/shuchinthasrinivasa', icon: <FaLinkedinIn />, label: 'LinkedIn' },
+              { href: 'https://twitter.com/shuchintha', icon: <FaTwitter />, label: 'Twitter' },
+            ].map((link, i) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.label}
+                whileHover={{ y: -3, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+              >
+                {link.icon}
+              </motion.a>
+            ))}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="contact-form-wrapper animate-fade-in-up stagger-2">
-          {submitted ? (
-            <div className="form-success">
-              <FiCheckCircle className="success-icon" />
-              <h4 className="success-title">Message Sent!</h4>
-              <p className="success-text">
-                Thank you for reaching out. I'll get back to you soon.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit}>
-              <div className="form-row">
+        <motion.div
+          className="contact-form-wrapper"
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <AnimatePresence mode="wait">
+            {submitted ? (
+              <motion.div
+                className="form-success"
+                key="success"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
+              >
+                <FiCheckCircle className="success-icon" />
+                <h4 className="success-title">Message Sent!</h4>
+                <p className="success-text">
+                  Thank you for reaching out. I'll get back to you soon.
+                </p>
+              </motion.div>
+            ) : (
+              <motion.form
+                key="form"
+                onSubmit={handleSubmit}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="name">Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="Your name"
+                      value={form.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="your@email.com"
+                      value={form.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
                 <div className="form-group">
-                  <label htmlFor="name">Name</label>
+                  <label htmlFor="subject">Subject</label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Your name"
-                    value={form.name}
+                    id="subject"
+                    name="subject"
+                    placeholder="What's this about?"
+                    value={form.subject}
                     onChange={handleChange}
                     required
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="your@email.com"
-                    value={form.email}
+                  <label htmlFor="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell me about your project..."
+                    value={form.message}
                     onChange={handleChange}
                     required
                   />
                 </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="subject">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  placeholder="What's this about?"
-                  value={form.subject}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Tell me about your project..."
-                  value={form.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <button type="submit" className="btn-submit">
-                <FiSend /> Send Message
-              </button>
-            </form>
-          )}
-        </div>
+                <motion.button
+                  type="submit"
+                  className="btn-submit"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <FiSend /> Send Message
+                </motion.button>
+              </motion.form>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

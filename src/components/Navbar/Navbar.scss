@@ -9,22 +9,28 @@
   height: $nav-height;
   z-index: 1000;
   transition: all $transition-normal;
-  @include glass(0.05);
 
   [data-theme='dark'] & {
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid rgba($dark-border, 0.5);
   }
   [data-theme='light'] & {
-    border-bottom: 1px solid rgba($light-border, 0.5);
-    @include glass(0.7);
+    background: rgba(251, 251, 253, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba($light-border, 0.6);
   }
 
   &.scrolled {
     [data-theme='dark'] & {
-      background: rgba($dark-bg, 0.85);
+      background: rgba(0, 0, 0, 0.88);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), 0 0 40px rgba(var(--accent-rgb), 0.03);
     }
     [data-theme='light'] & {
-      background: rgba($light-bg, 0.9);
+      background: rgba(251, 251, 253, 0.92);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06), 0 0 40px rgba(var(--accent-rgb), 0.02);
     }
   }
 
@@ -42,15 +48,15 @@
 
   .nav-logo {
     font-family: $font-display;
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     cursor: pointer;
     text-decoration: none;
 
     .logo-bracket {
       color: var(--accent);
-      font-weight: 800;
+      font-weight: 700;
     }
 
     [data-theme='dark'] & {
@@ -72,10 +78,11 @@
     }
 
     li a {
-      padding: $space-sm $space-md;
-      border-radius: $border-radius-sm;
-      font-size: 0.95rem;
-      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 980px;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
       transition: all $transition-fast;
       position: relative;
 
@@ -86,27 +93,28 @@
         color: $light-text-muted;
       }
 
-      &:hover,
-      &.active {
-        color: var(--accent);
+      &:hover {
         [data-theme='dark'] & {
-          background: rgba(var(--accent-rgb), 0.1);
+          color: $dark-text;
         }
         [data-theme='light'] & {
-          background: rgba(var(--accent-rgb), 0.08);
+          color: $light-text;
         }
       }
 
-      &.active::after {
-        content: '';
+      &.active {
+        color: var(--accent);
+      }
+
+      .active-indicator {
         position: absolute;
-        bottom: 2px;
+        bottom: -2px;
         left: 50%;
         transform: translateX(-50%);
-        width: 20px;
-        height: 2px;
+        width: 4px;
+        height: 4px;
         background: var(--accent);
-        border-radius: 1px;
+        border-radius: 50%;
       }
     }
   }
@@ -119,30 +127,33 @@
 
   .theme-toggle {
     @include flex-center;
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: all $transition-fast;
+    overflow: hidden;
 
     [data-theme='dark'] & {
       background: $dark-surface;
       color: $dark-text;
-      border: 1px solid $dark-border;
     }
     [data-theme='light'] & {
       background: $light-surface-alt;
       color: $light-text;
-      border: 1px solid $light-border;
     }
 
     &:hover {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-      transform: rotate(180deg);
+      [data-theme='dark'] & {
+        background: $dark-surface-alt;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      }
+      [data-theme='light'] & {
+        background: $light-border;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      }
     }
   }
 
@@ -152,13 +163,13 @@
     @include flex-center;
     flex-direction: column;
     gap: 5px;
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     border: none;
     border-radius: $border-radius-sm;
     cursor: pointer;
     background: transparent;
-    padding: 10px;
+    padding: 8px;
 
     @include tablet {
       display: flex;
@@ -166,8 +177,8 @@
 
     span {
       display: block;
-      width: 22px;
-      height: 2px;
+      width: 20px;
+      height: 1.5px;
       border-radius: 1px;
       transition: all $transition-fast;
 
@@ -194,37 +205,31 @@
 
   // ─── Mobile Menu ───
   .mobile-menu {
-    display: none;
     position: absolute;
     top: $nav-height;
     left: 0;
     right: 0;
-    padding: $space-lg;
+    padding: $space-md $space-lg;
     list-style: none;
-    animation: fadeInUp 0.3s ease-out;
+    overflow: hidden;
 
     [data-theme='dark'] & {
-      background: $dark-bg-alt;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid $dark-border;
     }
     [data-theme='light'] & {
-      background: $light-bg-alt;
+      background: rgba(251, 251, 253, 0.95);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid $light-border;
-    }
-
-    @include tablet {
-      &.open {
-        display: flex;
-        flex-direction: column;
-        gap: $space-xs;
-      }
     }
 
     li a {
       display: block;
-      padding: $space-md;
+      padding: $space-sm $space-md;
       border-radius: $border-radius-sm;
-      font-weight: 500;
+      font-weight: 400;
+      font-size: 0.95rem;
       transition: all $transition-fast;
 
       [data-theme='dark'] & {
@@ -237,12 +242,6 @@
       &:hover,
       &.active {
         color: var(--accent);
-        [data-theme='dark'] & {
-          background: rgba(var(--accent-rgb), 0.1);
-        }
-        [data-theme='light'] & {
-          background: rgba(var(--accent-rgb), 0.08);
-        }
       }
     }
   }

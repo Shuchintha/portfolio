@@ -1,40 +1,48 @@
 // ─── Status Colors ───
-$success:          #00C9A7;
-$warning:          #FFB800;
-$danger:           #FF6B6B;
+$success:          #30D158;
+$warning:          #FFD60A;
+$danger:           #FF453A;
 
-// ─── Dark Theme ───
-$dark-bg:          #0B0D17;
-$dark-bg-alt:      #111425;
-$dark-surface:     #181B2E;
-$dark-surface-alt: #1F2340;
-$dark-border:      #2A2E4A;
-$dark-text:        #E8E8F0;
-$dark-text-muted:  #8B8CA7;
-$dark-card-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
-$dark-accent:       #818CF8;
-$dark-accent-light: #A5B4FC;
-$dark-accent-glow:  rgba(129, 140, 248, 0.35);
-$dark-accent-rgb:   129, 140, 248;
+// ─── Dark Theme (Apple-Inspired – deep black tones) ───
+$dark-bg:          #000000;
+$dark-bg-alt:      #0a0a0a;
+$dark-surface:     #1c1c1e;
+$dark-surface-alt: #2c2c2e;
+$dark-border:      #38383a;
+$dark-text:        #f5f5f7;
+$dark-text-muted:  #86868b;
+$dark-card-shadow:     0 2px 20px rgba(0, 0, 0, 0.5);
+$dark-card-shadow-lg:  0 8px 40px rgba(0, 0, 0, 0.6), 0 0 60px rgba(41, 151, 255, 0.06);
+$dark-card-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.5), 0 0 40px rgba(41, 151, 255, 0.12);
+$dark-glow:            0 0 20px rgba(41, 151, 255, 0.15), 0 0 60px rgba(41, 151, 255, 0.08);
+$dark-glow-strong:     0 0 30px rgba(41, 151, 255, 0.25), 0 0 80px rgba(41, 151, 255, 0.12);
+$dark-accent:       #2997FF;
+$dark-accent-light: #64D2FF;
+$dark-accent-glow:  rgba(41, 151, 255, 0.2);
+$dark-accent-rgb:   41, 151, 255;
 
 // ─── Light Theme ───
-$light-bg:          #F5F5FA;
-$light-bg-alt:      #EEEEF5;
+$light-bg:          #FBFBFD;
+$light-bg-alt:      #F5F5F7;
 $light-surface:     #FFFFFF;
-$light-surface-alt: #F0F0F8;
-$light-border:      #D8D8E8;
-$light-text:        #1A1A2E;
-$light-text-muted:  #6B6B8A;
-$light-card-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-$light-accent:       #4F46E5;
-$light-accent-light: #6366F1;
-$light-accent-glow:  rgba(79, 70, 229, 0.35);
-$light-accent-rgb:   79, 70, 229;
+$light-surface-alt: #F5F5F7;
+$light-border:      #D2D2D7;
+$light-text:        #1D1D1F;
+$light-text-muted:  #6E6E73;
+$light-card-shadow:     0 2px 20px rgba(0, 0, 0, 0.06);
+$light-card-shadow-lg:  0 8px 40px rgba(0, 0, 0, 0.08), 0 0 60px rgba(0, 113, 227, 0.04);
+$light-card-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 113, 227, 0.08);
+$light-glow:            0 0 20px rgba(0, 113, 227, 0.1), 0 0 60px rgba(0, 113, 227, 0.05);
+$light-glow-strong:     0 0 30px rgba(0, 113, 227, 0.18), 0 0 80px rgba(0, 113, 227, 0.08);
+$light-accent:       #0071E3;
+$light-accent-light: #2997FF;
+$light-accent-glow:  rgba(0, 113, 227, 0.15);
+$light-accent-rgb:   0, 113, 227;
 
-// ─── Typography ───
-$font-primary:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-$font-display:   'Space Grotesk', 'Inter', sans-serif;
-$font-mono:      'JetBrains Mono', 'Fira Code', monospace;
+// ─── Typography (Apple SF Pro–inspired stack) ───
+$font-primary:   -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Inter', sans-serif;
+$font-display:   -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'Inter', sans-serif;
+$font-mono:      'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
 
 // ─── Spacing ───
 $space-xs:  0.25rem;
@@ -47,16 +55,16 @@ $space-3xl: 4rem;
 $space-4xl: 6rem;
 
 // ─── Layout ───
-$max-width:    1200px;
-$nav-height:   72px;
-$border-radius: 12px;
-$border-radius-sm: 8px;
-$border-radius-lg: 20px;
+$max-width:    1120px;
+$nav-height:   52px;
+$border-radius: 16px;
+$border-radius-sm: 10px;
+$border-radius-lg: 24px;
 
-// ─── Transitions ───
-$transition-fast:   0.2s cubic-bezier(0.4, 0, 0.2, 1);
-$transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-$transition-slow:   0.5s cubic-bezier(0.4, 0, 0.2, 1);
+// ─── Transitions (Apple-style ease curves) ───
+$transition-fast:   0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+$transition-normal: 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+$transition-slow:   0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
 
 // ─── Breakpoints ───
 $bp-mobile:  480px;

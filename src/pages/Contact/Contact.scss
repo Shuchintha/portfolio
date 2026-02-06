@@ -21,8 +21,9 @@
   .contact-info {
     .info-title {
       font-family: $font-display;
-      font-size: 1.6rem;
-      font-weight: 700;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
       margin-bottom: $space-md;
 
       [data-theme='dark'] & {
@@ -34,8 +35,10 @@
     }
 
     .info-text {
-      font-size: 1.05rem;
-      line-height: 1.8;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: -0.003em;
       margin-bottom: $space-xl;
 
       [data-theme='dark'] & {
@@ -59,29 +62,33 @@
 
         .info-icon {
           @include flex-center;
-          width: 48px;
-          height: 48px;
+          width: 44px;
+          height: 44px;
           border-radius: $border-radius-sm;
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           color: var(--accent);
           flex-shrink: 0;
 
           [data-theme='dark'] & {
-            background: rgba(var(--accent-rgb), 0.12);
+            background: rgba(var(--accent-rgb), 0.1);
+            box-shadow: 0 0 16px rgba(var(--accent-rgb), 0.1);
           }
           [data-theme='light'] & {
-            background: rgba(var(--accent-rgb), 0.08);
+            background: rgba(var(--accent-rgb), 0.06);
+            box-shadow: 0 0 16px rgba(var(--accent-rgb), 0.06);
           }
         }
 
         .info-details {
+          display: flex;
+          flex-direction: column;
+
           .info-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-bottom: 2px;
-            padding: 10px;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+
             [data-theme='dark'] & {
               color: $dark-text-muted;
             }
@@ -91,8 +98,9 @@
           }
 
           .info-value {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
+            letter-spacing: -0.01em;
 
             [data-theme='dark'] & {
               color: $dark-text;
@@ -107,14 +115,14 @@
 
     .social-links {
       display: flex;
-      gap: $space-md;
+      gap: $space-sm;
 
       a {
         @include flex-center;
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
-        font-size: 1.1rem;
+        font-size: 1rem;
         transition: all $transition-fast;
 
         [data-theme='dark'] & {
@@ -129,11 +137,17 @@
         }
 
         &:hover {
-          background: var(--accent);
-          color: #fff;
-          border-color: var(--accent);
-          transform: translateY(-3px);
-          box-shadow: 0 6px 20px var(--accent-glow);
+          color: var(--accent);
+          [data-theme='dark'] & {
+            border-color: rgba(var(--accent-rgb), 0.4);
+            background: rgba(var(--accent-rgb), 0.1);
+            box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.15);
+          }
+          [data-theme='light'] & {
+            border-color: rgba(var(--accent-rgb), 0.3);
+            background: rgba(var(--accent-rgb), 0.06);
+            box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.1);
+          }
         }
       }
     }
@@ -149,8 +163,9 @@
 
       label {
         display: block;
-        font-size: 0.9rem;
-        font-weight: 600;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
         margin-bottom: $space-sm;
 
         [data-theme='dark'] & {
@@ -164,10 +179,10 @@
       input,
       textarea {
         width: 100%;
-        padding: $space-md;
+        padding: 12px 16px;
         border-radius: $border-radius-sm;
         font-family: $font-primary;
-        font-size: 1rem;
+        font-size: 0.95rem;
         transition: all $transition-fast;
         outline: none;
 
@@ -192,13 +207,18 @@
 
         &:focus {
           border-color: var(--accent);
-          box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+          [data-theme='dark'] & {
+            box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15), 0 4px 20px rgba(var(--accent-rgb), 0.08);
+          }
+          [data-theme='light'] & {
+            box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1), 0 4px 20px rgba(var(--accent-rgb), 0.06);
+          }
         }
       }
 
       textarea {
         resize: vertical;
-        min-height: 140px;
+        min-height: 130px;
       }
     }
 
@@ -216,8 +236,8 @@
       @include glow-button;
       width: 100%;
       justify-content: center;
-      padding: $space-md $space-xl;
-      font-size: 1.05rem;
+      padding: 14px $space-xl;
+      font-size: 0.95rem;
     }
 
     .form-success {
@@ -226,17 +246,17 @@
       gap: $space-md;
       padding: $space-2xl;
       text-align: center;
-      animation: scaleIn 0.4s ease-out;
 
       .success-icon {
-        font-size: 3rem;
+        font-size: 2.5rem;
         color: $success;
       }
 
       .success-title {
         font-family: $font-display;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 600;
+        letter-spacing: -0.02em;
 
         [data-theme='dark'] & {
           color: $dark-text;
@@ -247,6 +267,8 @@
       }
 
       .success-text {
+        font-size: 0.95rem;
+
         [data-theme='dark'] & {
           color: $dark-text-muted;
         }

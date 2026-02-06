@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { FiCalendar, FiMapPin } from 'react-icons/fi';
 import { experiences } from '../../data/portfolioData';
 import './Experience.scss';
@@ -5,20 +6,34 @@ import './Experience.scss';
 const Experience = () => {
   return (
     <section className="experience section" id="experience">
-      <div className="section-header">
+      <motion.div
+        className="section-header"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <h2 className="section-title">
           Work <span className="accent">Experience</span>
         </h2>
         <p className="section-subtitle">
           My professional journey building impactful software
         </p>
-      </div>
+      </motion.div>
 
       <div className="timeline">
         {experiences.map((exp, idx) => (
-          <div
+          <motion.div
             key={exp.id}
-            className={`timeline-item animate-fade-in-up stagger-${idx + 1}`}
+            className="timeline-item"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{
+              duration: 0.6,
+              delay: idx * 0.12,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
           >
             <div className="timeline-dot" />
             <div className="timeline-card">
@@ -51,7 +66,7 @@ const Experience = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

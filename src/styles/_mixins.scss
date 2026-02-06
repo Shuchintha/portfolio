@@ -26,18 +26,24 @@
   justify-content: space-between;
 }
 
-// ─── Glass Effect ───
-@mixin glass($opacity: 0.08) {
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  background: rgba(255, 255, 255, $opacity);
+// ─── Glass Effect (Apple frosted-glass) ───
+@mixin glass($opacity: 0.72) {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+
+  [data-theme='dark'] & {
+    background: rgba(29, 29, 31, $opacity);
+  }
+  [data-theme='light'] & {
+    background: rgba(255, 255, 255, $opacity);
+  }
 }
 
-// ─── Card Style ───
+// ─── Card Style (Apple-inspired with depth) ───
 @mixin card {
   border-radius: $border-radius;
-  transition: transform $transition-normal, box-shadow $transition-normal;
-  
+  transition: transform $transition-normal, box-shadow $transition-normal, border-color $transition-normal;
+
   [data-theme='dark'] & {
     background: $dark-surface;
     border: 1px solid $dark-border;
@@ -46,25 +52,29 @@
   [data-theme='light'] & {
     background: $light-surface;
     border: 1px solid $light-border;
-    box-shadow: $light-card-shadow;
+    box-shadow: $light-card-shadow-lg;
   }
 
   &:hover {
     transform: translateY(-4px);
     [data-theme='dark'] & {
-      box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.15);
+      border-color: rgba(var(--accent-rgb), 0.3);
+      box-shadow: $dark-card-shadow-hover;
     }
     [data-theme='light'] & {
-      box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.12);
+      border-color: rgba(var(--accent-rgb), 0.2);
+      box-shadow: $light-card-shadow-hover;
     }
   }
 }
 
-// ─── Section Title ───
+// ─── Section Title (Apple large headline style) ───
 @mixin section-title {
   font-family: $font-display;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
   margin-bottom: $space-lg;
   position: relative;
   display: inline-block;
@@ -73,108 +83,88 @@
     color: var(--accent);
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    border-radius: 2px;
-  }
+  // Removed the underline bar – Apple doesn't use them
 }
 
-// ─── Glow Button ───
+// ─── Primary Button (Apple filled button with glow) ───
 @mixin glow-button {
   display: inline-flex;
   align-items: center;
   gap: $space-sm;
-  padding: $space-md $space-xl;
+  padding: 14px 28px;
   border: none;
-  border-radius: 50px;
+  border-radius: 980px; // Apple's massive pill radius
   font-family: $font-primary;
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
   cursor: pointer;
-  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  background: var(--accent);
   color: #fff;
   position: relative;
   overflow: hidden;
   transition: all $transition-normal;
   text-decoration: none;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
-  }
+  box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.3), 0 2px 8px rgba(var(--accent-rgb), 0.2);
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px var(--accent-glow);
-
-    &::before {
-      left: 100%;
-    }
+    background: var(--accent-light);
+    transform: scale(1.02) translateY(-1px);
+    box-shadow: 0 8px 28px rgba(var(--accent-rgb), 0.4), 0 4px 12px rgba(var(--accent-rgb), 0.25);
   }
 
   &:active {
-    transform: translateY(0);
+    transform: scale(0.98);
+    box-shadow: 0 2px 10px rgba(var(--accent-rgb), 0.3);
   }
 }
 
-// ─── Outline Button ───
+// ─── Outline Button (Apple ghost/text link button) ───
 @mixin outline-button {
   display: inline-flex;
   align-items: center;
   gap: $space-sm;
-  padding: $space-md $space-xl;
-  border: 2px solid var(--accent);
-  border-radius: 50px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 980px;
   font-family: $font-primary;
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
   cursor: pointer;
   background: transparent;
   color: var(--accent);
   transition: all $transition-normal;
   text-decoration: none;
 
+  [data-theme='dark'] & {
+    background: $dark-surface;
+    border: 1px solid $dark-border;
+  }
+  [data-theme='light'] & {
+    background: $light-surface-alt;
+    border: 1px solid $light-border;
+  }
+
   &:hover {
-    background: var(--accent);
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px var(--accent-glow);
+    [data-theme='dark'] & {
+      background: $dark-surface-alt;
+      border-color: rgba(var(--accent-rgb), 0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--accent-rgb), 0.08);
+    }
+    [data-theme='light'] & {
+      background: $light-surface;
+      border-color: rgba(var(--accent-rgb), 0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 0 20px rgba(var(--accent-rgb), 0.06);
+    }
+    transform: scale(1.02) translateY(-1px);
   }
 }
 
-// ─── Text Gradient ───
+// ─── Text Gradient (Apple style) ───
 @mixin text-gradient {
-  background: linear-gradient(135deg, var(--accent), var(--accent-light), $success);
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-// ─── Skeleton Shimmer ───
-@mixin shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(var(--accent-rgb), 0.05) 50%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
 }

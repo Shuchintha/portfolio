@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { useTheme } from '../../context/ThemeContext';
 import { navLinks } from '../../data/portfolioData';
@@ -16,7 +17,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Track which section is in view
   useEffect(() => {
     const sectionIds = navLinks.map((link) => link.path.replace('#', ''));
     const observer = new IntersectionObserver(
@@ -49,7 +49,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <motion.nav
+      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+    >
       <div className="nav-container">
         <a
           href="#home"
@@ -70,19 +75,39 @@ const Navbar = () => {
                 onClick={(e) => handleNavClick(e, link.path)}
               >
                 {link.label}
+                {activeSection === link.path && (
+                  <motion.span
+                    className="active-indicator"
+                    layoutId="activeNav"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
               </a>
             </li>
           ))}
         </ul>
 
         <div className="nav-actions">
-          <button
+          <motion.button
             className="theme-toggle"
             onClick={toggleTheme}
             aria-label="Toggle theme"
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
           >
-            {theme === 'dark' ? <FiSun /> : <FiMoon />}
-          </button>
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={theme}
+                initial={{ y: -20, opacity: 0, rotate: -90 }}
+                animate={{ y: 0, opacity: 1, rotate: 0 }}
+                exit={{ y: 20, opacity: 0, rotate: 90 }}
+                transition={{ duration: 0.2 }}
+                style={{ display: 'flex' }}
+              >
+                {theme === 'dark' ? <FiSun /> : <FiMoon />}
+              </motion.span>
+            </AnimatePresence>
+          </motion.button>
 
           <button
             className={`mobile-toggle ${mobileOpen ? 'open' : ''}`}
@@ -96,20 +121,35 @@ const Navbar = () => {
         </div>
       </div>
 
-      <ul className={`mobile-menu ${mobileOpen ? 'open' : ''}`}>
-        {navLinks.map((link) => (
-          <li key={link.path}>
-            <a
-              href={link.path}
-              className={activeSection === link.path ? 'active' : ''}
-              onClick={(e) => handleNavClick(e, link.path)}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.ul
+            className="mobile-menu open"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            {navLinks.map((link, i) => (
+              <motion.li
+                key={link.path}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.05 }}
+              >
+                <a
+                  href={link.path}
+                  className={activeSection === link.path ? 'active' : ''}
+                  onClick={(e) => handleNavClick(e, link.path)}
+                >
+                  {link.label}
+                </a>
+              </motion.li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 

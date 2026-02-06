@@ -15,14 +15,14 @@
       left: 28px;
       top: 0;
       bottom: 0;
-      width: 2px;
+      width: 1px;
       border-radius: 1px;
 
       [data-theme='dark'] & {
-        background: linear-gradient(to bottom, var(--accent), $dark-border);
+        background: linear-gradient(180deg, var(--accent), $dark-border 30%, $dark-border 70%, var(--accent));
       }
       [data-theme='light'] & {
-        background: linear-gradient(to bottom, var(--accent), $light-border);
+        background: linear-gradient(180deg, var(--accent), $light-border 30%, $light-border 70%, var(--accent));
       }
 
       @include tablet {
@@ -46,28 +46,28 @@
 
     .timeline-dot {
       position: absolute;
-      left: 18px;
+      left: 22px;
       top: 8px;
-      width: 22px;
-      height: 22px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       background: var(--accent);
-      border: 4px solid transparent;
+      border: 3px solid transparent;
       z-index: 1;
+      box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4), 0 0 30px rgba(var(--accent-rgb), 0.15);
+      animation: dotPulse 3s ease-in-out infinite;
 
       [data-theme='dark'] & {
         border-color: $dark-bg;
-        box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.2);
       }
       [data-theme='light'] & {
         border-color: $light-bg;
-        box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.15);
       }
 
       @include tablet {
-        left: 10px;
-        width: 20px;
-        height: 20px;
+        left: 14px;
+        width: 12px;
+        height: 12px;
       }
     }
 
@@ -80,8 +80,9 @@
 
         .role {
           font-family: $font-display;
-          font-size: 1.3rem;
-          font-weight: 700;
+          font-size: 1.2rem;
+          font-weight: 600;
+          letter-spacing: -0.02em;
           margin-bottom: $space-xs;
 
           [data-theme='dark'] & {
@@ -93,9 +94,9 @@
         }
 
         .company {
-          font-size: 1.05rem;
+          font-size: 1rem;
           color: var(--accent);
-          font-weight: 600;
+          font-weight: 500;
           margin-bottom: $space-sm;
         }
 
@@ -108,7 +109,7 @@
             display: flex;
             align-items: center;
             gap: $space-xs;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
 
             [data-theme='dark'] & {
               color: $dark-text-muted;
@@ -119,7 +120,7 @@
 
             svg {
               color: var(--accent);
-              font-size: 0.85rem;
+              font-size: 0.8rem;
             }
           }
         }
@@ -137,8 +138,9 @@
           li {
             display: flex;
             gap: $space-sm;
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            letter-spacing: -0.003em;
 
             [data-theme='dark'] & {
               color: $dark-text-muted;
@@ -164,28 +166,33 @@
         gap: $space-sm;
 
         .tech-tag {
-          padding: $space-xs $space-md;
-          border-radius: 50px;
-          font-size: 0.8rem;
+          padding: 4px 12px;
+          border-radius: 980px;
+          font-size: 0.75rem;
           font-family: $font-mono;
           font-weight: 500;
           transition: all $transition-fast;
 
           [data-theme='dark'] & {
-            background: rgba(var(--accent-rgb), 0.1);
+            background: rgba(var(--accent-rgb), 0.08);
             color: var(--accent-light);
-            border: 1px solid rgba(var(--accent-rgb), 0.2);
+            border: 1px solid rgba(var(--accent-rgb), 0.15);
           }
           [data-theme='light'] & {
-            background: rgba(var(--accent-rgb), 0.06);
+            background: rgba(var(--accent-rgb), 0.04);
             color: var(--accent);
-            border: 1px solid rgba(var(--accent-rgb), 0.15);
+            border: 1px solid rgba(var(--accent-rgb), 0.12);
           }
 
           &:hover {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
+            [data-theme='dark'] & {
+              background: rgba(var(--accent-rgb), 0.15);
+              box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.12);
+            }
+            [data-theme='light'] & {
+              background: rgba(var(--accent-rgb), 0.08);
+              box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.08);
+            }
           }
         }
       }
