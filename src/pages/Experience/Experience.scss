@@ -77,40 +77,16 @@
 
   // ─── Individual card ───
   .exp-card {
+    @include card;
     flex: 0 0 280px;
     scroll-snap-align: start;
-    border-radius: $border-radius;
     padding: $space-xl $space-lg;
     display: flex;
     flex-direction: column;
     gap: $space-md;
-    position: relative;
     overflow: hidden;
-    transition: transform $transition-normal, box-shadow $transition-normal, border-color $transition-normal;
-
-    [data-theme='dark'] & {
-      background: $dark-surface;
-      border: 1px solid $dark-border;
-      box-shadow: $dark-card-shadow;
-    }
-    [data-theme='light'] & {
-      background: $light-surface;
-      border: 1px solid $light-border;
-      box-shadow: $light-card-shadow;
-    }
 
     &:hover {
-      transform: translateY(-6px);
-
-      [data-theme='dark'] & {
-        border-color: rgba(var(--accent-rgb), 0.35);
-        box-shadow: $dark-card-shadow-hover;
-      }
-      [data-theme='light'] & {
-        border-color: rgba(var(--accent-rgb), 0.25);
-        box-shadow: $light-card-shadow-hover;
-      }
-
       .card-index {
         opacity: 1;
         color: var(--accent);

@@ -1,118 +1,167 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
-.skills {
-  padding-top: calc($nav-height + $space-3xl);
+.skills-bento {
+  padding-top: calc($nav-height + $space-xl);
+  perspective: 1000px;
+}
 
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: $space-lg;
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  gap: $space-lg;
+  
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $space-md;
+  }
+}
+
+.bento-card {
+  @include card;
+  padding: $space-xl;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+
+  // Gradient Blob Effect
+  .card-gradient {
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &:hover .card-gradient {
+    opacity: 0.6;
+  }
+
+  // ─── Grid Areas ───
+  &.card-featured {
+    grid-column: span 2;
+    grid-row: span 2;
+    
+    @include tablet {
+       grid-column: span 2;
+    }
     @include mobile {
-      grid-template-columns: 1fr;
+      grid-column: span 1;
+      grid-row: auto;
+    }
+
+    .card-title {
+      font-size: 1.8rem;
+    }
+    
+    .card-icon-wrapper {
+      width: 60px;
+      height: 60px;
+      font-size: 1.8rem;
     }
   }
 
-  .skill-category {
-    @include card;
-    padding: $space-xl;
+  &.card-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+
+    @include mobile {
+      grid-row: auto;
+    }
+  }
+
+  &.card-standard {
+    grid-column: span 1;
+  }
+
+  // ─── Card Content ───
+  .card-top {
     position: relative;
-    overflow: hidden;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    margin-bottom: $space-xl;
 
-    .category-header {
-      display: flex;
-      align-items: center;
-      gap: $space-md;
-      margin-bottom: $space-xl;
-
-      .category-icon {
-        @include flex-center;
-        width: 44px;
-        height: 44px;
-        border-radius: $border-radius-sm;
-        font-size: 1.2rem;
-        color: var(--accent);
-        flex-shrink: 0;
-
-        [data-theme='dark'] & {
-          background: rgba(var(--accent-rgb), 0.1);
-          box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.1);
-        }
-        [data-theme='light'] & {
-          background: rgba(var(--accent-rgb), 0.06);
-          box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.06);
-        }
-      }
-
-      .category-title {
-        font-family: $font-display;
-        font-size: 1.1rem;
-        font-weight: 600;
-        letter-spacing: -0.02em;
-
-        [data-theme='dark'] & {
-          color: $dark-text;
-        }
-        [data-theme='light'] & {
-          color: $light-text;
-        }
+    .card-icon-wrapper {
+      @include flex-center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      background: rgba(var(--accent-rgb), 0.1);
+      color: var(--accent);
+      
+      [data-theme='light'] & {
+        background: rgba(var(--accent-rgb), 0.08);
       }
     }
 
-    .skill-list {
-      display: flex;
-      flex-direction: column;
-      gap: $space-lg;
-    }
+    .card-title {
+      font-family: $font-display;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
 
-    .skill-item {
-      .skill-info {
+      [data-theme='dark'] & { color: $dark-text; }
+      [data-theme='light'] & { color: $light-text; }
+    }
+  }
+
+  // ─── Progress Bars / Items ───
+  .card-items {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+
+    .skill-row {
+      .skill-meta {
         @include flex-between;
-        margin-bottom: $space-xs;
+        margin-bottom: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
 
         .skill-name {
-          font-size: 0.9rem;
-          font-weight: 500;
-          letter-spacing: -0.01em;
-
-          [data-theme='dark'] & {
-            color: $dark-text;
-          }
-          [data-theme='light'] & {
-            color: $light-text;
-          }
+           [data-theme='dark'] & { color: $dark-text-muted; }
+           [data-theme='light'] & { color: $light-text-muted; }
         }
 
-        .skill-percent {
+        .skill-val {
           font-family: $font-mono;
-          font-size: 0.8rem;
-          font-weight: 500;
+          font-size: 0.75rem;
           color: var(--accent);
         }
       }
 
-      .skill-bar {
+      .skill-track {
+        height: 6px;
         width: 100%;
-        height: 4px;
-        border-radius: 2px;
+        border-radius: 3px;
         overflow: hidden;
-        position: relative;
 
-        [data-theme='dark'] & {
-          background: $dark-surface-alt;
-        }
-        [data-theme='light'] & {
-          background: $light-surface-alt;
-        }
+        [data-theme='dark'] & { background: rgba(255, 255, 255, 0.05); }
+        [data-theme='light'] & { background: rgba(0, 0, 0, 0.05); }
+      }
 
-        .skill-fill {
-          height: 100%;
-          border-radius: 2px;
-          background: linear-gradient(90deg, var(--accent), var(--accent-light));
-          position: relative;
-          box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.3), 0 0 20px rgba(var(--accent-rgb), 0.1);
-        }
+      .skill-progress {
+        height: 100%;
+        border-radius: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-light));
+        box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.3);
       }
     }
   }

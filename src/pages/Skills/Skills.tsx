@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   FaReact,
@@ -20,76 +19,91 @@ const iconMap: Record<string, React.ReactNode> = {
   FaTools: <FaTools />,
 };
 
+// Assign grid area classes based on category
+const getGridClass = (title: string) => {
+  switch (title) {
+    case 'Frontend': return 'card-featured';
+    case 'Languages': return 'card-tall';
+    default: return 'card-standard';
+  }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.7, ease: [0.2, 0.8, 0.2, 1] },
+  },
+};
+
 const Skills = () => {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section className="skills section" id="skills" ref={ref}>
+    <section className="skills-bento section" id="skills">
       <motion.div
         className="section-header"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         <h2 className="section-title">
-          My <span className="accent">Skills</span>
+          Tech <span className="accent">Stack</span>
         </h2>
         <p className="section-subtitle">
-          Technologies and tools I work with to build exceptional digital products
+          My command center for building digital excellence
         </p>
       </motion.div>
 
-      <div className="skills-grid">
-        {skillCategories.map((category, catIdx) => (
+      <motion.div
+        className="bento-grid"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        {skillCategories.map((category) => (
           <motion.div
             key={category.title}
-            className="skill-category"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{
-              duration: 0.5,
-              delay: catIdx * 0.08,
-              ease: [0.25, 0.1, 0.25, 1],
-            }}
-            whileHover={{ y: -4, transition: { duration: 0.25 } }}
+            className={`bento-card ${getGridClass(category.title)}`}
+            variants={cardVariants}
+            whileHover={{ y: -8, transition: { duration: 0.3 } }}
           >
-            <div className="category-header">
-              <div className="category-icon">
+            {/* Background Gradient Blob */}
+            <div className="card-gradient" />
+
+            <div className="card-top">
+              <div className="card-icon-wrapper">
                 {iconMap[category.icon]}
               </div>
-              <h3 className="category-title">{category.title}</h3>
+              <h3 className="card-title">{category.title}</h3>
             </div>
-            <div className="skill-list">
+
+            <div className="card-items">
               {category.skills.map((skill) => (
-                <div key={skill.name} className="skill-item">
-                  <div className="skill-info">
+                <div key={skill.name} className="skill-row">
+                  <div className="skill-meta">
                     <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percent">{skill.level}%</span>
+                    <span className="skill-val">{skill.level}%</span>
                   </div>
-                  <div className="skill-bar">
-                    <motion.div
-                      className="skill-fill"
+                  <div className="skill-track">
+                    <motion.div 
+                      className="skill-progress"
                       initial={{ width: 0 }}
-                      animate={visible ? { width: `${skill.level}%` } : { width: 0 }}
-                      transition={{ duration: 1.2, delay: catIdx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                      whileInView={{ width: `${skill.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.5, delay: 0.5, ease: "circOut" }}
                     />
                   </div>
                 </div>
@@ -97,7 +111,7 @@ const Skills = () => {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
