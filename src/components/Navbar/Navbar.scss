@@ -270,8 +270,8 @@
 
 // ─── Mobile Toggle (2 bars → X) ───
 .mobile-toggle {
-  display: none;
   @include flex-center;
+  display: none; // Hides on desktop interactions
   flex-direction: column;
   gap: 5px;
   width: 36px;
@@ -328,6 +328,10 @@
   inset: 0;
   z-index: 998;
 
+  @include desktop {
+    display: none !important;
+  }
+
   [data-theme='dark'] & {
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
@@ -348,6 +352,10 @@
   border-radius: $border-radius;
   overflow: hidden;
   z-index: 999;
+
+  @include desktop {
+    display: none !important;
+  }
 
   [data-theme='dark'] & {
     background: rgba(22, 22, 24, 0.95);

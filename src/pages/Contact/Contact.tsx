@@ -41,9 +41,9 @@ const Contact = () => {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="contact-heading">
+          <h5 className="contact-heading">
             Let's build something <span className="accent">amazing</span> together.
-          </h2>
+          </h5>
           <p className="contact-desc">
             I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out through any of the channels below!.
           </p>
