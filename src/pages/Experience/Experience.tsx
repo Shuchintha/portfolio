@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiCalendar, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { experiences } from '../../data/portfolioData';
 import './Experience.scss';

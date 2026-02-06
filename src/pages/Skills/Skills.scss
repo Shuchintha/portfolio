@@ -250,10 +250,11 @@
   border: 1px solid rgba($black, 0.05);
   cursor: default;
   overflow: hidden;
-  
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
   [data-theme='dark'] & {
     background: rgba($white, 0.05);
     border: 1px solid rgba($white, 0.05);
+    box-shadow: inset 0 1px 1px #64b4ff1f,0 16px 36px -6px #00020899;
   }
 
   // Hover Effect: Accent Border
