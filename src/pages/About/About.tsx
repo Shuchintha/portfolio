@@ -7,7 +7,7 @@ import {
 import './About.scss';
 
 const highlights = [
-  'React & Angular Expert',
+  'React & Angular',
   'TypeScript Architecture',
   'Redux & NgRx State Mgmt',
   'GraphQL & REST APIs',

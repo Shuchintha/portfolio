@@ -85,10 +85,9 @@ export const experiences: Experience[] = [
     duration: 'Jan 2023 – Present',
     location: 'Milpitas, CA',
     description: [
-      'Led the migration of a monolithic Angular app to a micro-frontend React architecture, improving load times by 40%.',
-      'Architected a scalable design system using Material UI and Tailwind CSS, adopted across 5+ product teams.',
+      'Led migration of a monolithic Angular app to micro-frontend React architecture, improving load times by 40%.',
     ],
-    technologies: ['React', 'TypeScript', 'Redux Toolkit', 'GraphQL', 'Material UI', 'Micro-Frontends'],
+    technologies: ['React', 'TypeScript', 'Redux Toolkit', 'GraphQL', 'Material UI'],
   },
   {
     id: 2,
@@ -97,21 +96,41 @@ export const experiences: Experience[] = [
     duration: 'Jun 2021 – Dec 2022',
     location: 'Austin, TX',
     description: [
-      'Built and maintained complex Angular applications with NgRx state management and RxJS-driven data streams.',
-      'Developed secure authentication flows using OAuth 2.0 and JWT token management.',
+      'Built complex Angular applications with NgRx state management and RxJS-driven data streams.',
     ],
-    technologies: ['Angular', 'TypeScript', 'NgRx', 'RxJS', 'OAuth', 'RESTful APIs'],
+    technologies: ['Angular', 'TypeScript', 'NgRx', 'RxJS', 'RESTful APIs'],
   },
   {
     id: 3,
+    role: 'React Developer',
+    company: 'CloudNine Systems',
+    duration: 'Aug 2020 – May 2021',
+    location: 'San Jose, CA',
+    description: [
+      'Developed and shipped customer-facing dashboards using React, Context API, and Tailwind CSS.',
+    ],
+    technologies: ['React', 'JavaScript', 'Tailwind CSS', 'Context API', 'Docker'],
+  },
+  {
+    id: 4,
     role: 'Web Developer',
     company: 'CreativeEdge Digital',
-    duration: 'Mar 2020 – May 2021',
+    duration: 'Jan 2020 – Jul 2020',
     location: 'Remote',
     description: [
-      'Developed responsive, pixel-perfect web applications using React with functional components and Hooks API.',
-      'Translated complex Figma designs into accessible, performant UI components.',
+      'Developed responsive, pixel-perfect web applications using React with functional components and Hooks.',
     ],
-    technologies: ['React', 'JavaScript', 'SASS', 'REST APIs', 'GitHub Actions', 'Figma'],
+    technologies: ['React', 'JavaScript', 'SASS', 'REST APIs', 'Figma'],
+  },
+  {
+    id: 5,
+    role: 'Junior Developer',
+    company: 'BrightPath Labs',
+    duration: 'Jun 2019 – Dec 2019',
+    location: 'Bangalore, India',
+    description: [
+      'Built internal tools and contributed to front-end features using HTML, CSS, JavaScript, and jQuery.',
+    ],
+    technologies: ['JavaScript', 'HTML5', 'CSS3', 'jQuery', 'Bootstrap'],
   },
 ];

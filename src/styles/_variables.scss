@@ -1,3 +1,7 @@
+// ─── Base Colors ───
+$white:            #FFFFFF;
+$black:            #000000;
+
 // ─── Status Colors ───
 $success:          #30D158;
 $warning:          #FFD60A;
@@ -48,6 +52,27 @@ $font-mono:      'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
 $space-xs:  0.25rem;
 $space-sm:  0.5rem;
 $space-md:  1rem;
+
+// ─── Brand Colors ───
+$brand-angular: #BF5AF2;
+
+// ─── Syntax Highlighting (Dark) ───
+$syntax-dark-linenum: #484f58;
+$syntax-dark-keyword: #ff7b72;
+$syntax-dark-variable: #d2a8ff;
+$syntax-dark-key:     #79c0ff;
+$syntax-dark-string:  #a5d6ff;
+$syntax-dark-comment: #484f58;
+$syntax-dark-plain:   #c9d1d9;
+
+// ─── Syntax Highlighting (Light) ───
+$syntax-light-linenum: #b0b8c1;
+$syntax-light-keyword: #cf222e;
+$syntax-light-variable: #8250df;
+$syntax-light-key:     #0550ae;
+$syntax-light-string:  #0a3069;
+$syntax-light-comment: #8b949e;
+$syntax-light-plain:   #24292f;
 $space-lg:  1.5rem;
 $space-xl:  2rem;
 $space-2xl: 3rem;
@@ -56,7 +81,7 @@ $space-4xl: 6rem;
 
 // ─── Layout ───
 $max-width:    1120px;
-$nav-height:   52px;
+$nav-height:   56px;
 $border-radius: 16px;
 $border-radius-sm: 10px;
 $border-radius-lg: 24px;

@@ -233,22 +233,22 @@
         animation: glowPulse 4s ease-in-out infinite;
 
         [data-theme='dark'] & {
-          background: linear-gradient(145deg, $dark-surface, #151517);
+          background: linear-gradient(145deg, $dark-surface, $dark-bg-alt);
           color: var(--accent);
           border: 1px solid rgba(var(--accent-rgb), 0.15);
           box-shadow:
-            0 8px 32px rgba(0, 0, 0, 0.4),
+            0 8px 32px rgba($black, 0.4),
             0 0 40px rgba(var(--accent-rgb), 0.08),
-            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            inset 0 1px 0 rgba($white, 0.05);
         }
         [data-theme='light'] & {
-          background: linear-gradient(145deg, $light-surface, #f5f5f5);
+          background: linear-gradient(145deg, $light-surface, $light-bg-alt);
           color: var(--accent);
           border: 1px solid rgba(var(--accent-rgb), 0.12);
           box-shadow:
-            0 8px 32px rgba(0, 0, 0, 0.08),
+            0 8px 32px rgba($black, 0.08),
             0 0 40px rgba(var(--accent-rgb), 0.06),
-            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            inset 0 1px 0 rgba($white, 0.8);
         }
 
         @include tablet {
@@ -297,42 +297,42 @@
         &.badge-react {
           top: 8%;
           right: -36px;
-          color: #30D158;
-          border-color: rgba(48, 209, 88, 0.35);
+          color: $success;
+          border-color: rgba($success, 0.35);
 
           [data-theme='dark'] & {
-            box-shadow: 0 4px 20px rgba(48, 209, 88, 0.15), 0 0 40px rgba(48, 209, 88, 0.06);
+            box-shadow: 0 4px 20px rgba($success, 0.15), 0 0 40px rgba($success, 0.06);
           }
           [data-theme='light'] & {
-            box-shadow: 0 4px 20px rgba(48, 209, 88, 0.12), 0 0 40px rgba(48, 209, 88, 0.04);
+            box-shadow: 0 4px 20px rgba($success, 0.12), 0 0 40px rgba($success, 0.04);
           }
         }
 
         &.badge-ts {
           bottom: 22%;
           left: -44px;
-          color: #64D2FF;
-          border-color: rgba(100, 210, 255, 0.35);
+          color: $dark-accent-light;
+          border-color: rgba($dark-accent-light, 0.35);
 
           [data-theme='dark'] & {
-            box-shadow: 0 4px 20px rgba(100, 210, 255, 0.15), 0 0 40px rgba(100, 210, 255, 0.06);
+            box-shadow: 0 4px 20px rgba($dark-accent-light, 0.15), 0 0 40px rgba($dark-accent-light, 0.06);
           }
           [data-theme='light'] & {
-            box-shadow: 0 4px 20px rgba(100, 210, 255, 0.12), 0 0 40px rgba(100, 210, 255, 0.04);
+            box-shadow: 0 4px 20px rgba($dark-accent-light, 0.12), 0 0 40px rgba($dark-accent-light, 0.04);
           }
         }
 
         &.badge-angular {
           bottom: 2%;
           right: -24px;
-          color: #BF5AF2;
-          border-color: rgba(191, 90, 242, 0.35);
+          color: $brand-angular;
+          border-color: rgba($brand-angular, 0.35);
 
           [data-theme='dark'] & {
-            box-shadow: 0 4px 20px rgba(191, 90, 242, 0.15), 0 0 40px rgba(191, 90, 242, 0.06);
+            box-shadow: 0 4px 20px rgba($brand-angular, 0.15), 0 0 40px rgba($brand-angular, 0.06);
           }
           [data-theme='light'] & {
-            box-shadow: 0 4px 20px rgba(191, 90, 242, 0.12), 0 0 40px rgba(191, 90, 242, 0.04);
+            box-shadow: 0 4px 20px rgba($brand-angular, 0.12), 0 0 40px rgba($brand-angular, 0.04);
           }
         }
       }

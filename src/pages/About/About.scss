@@ -34,17 +34,17 @@
       transition: transform $transition-normal, box-shadow $transition-normal;
 
       [data-theme='dark'] & {
-        background: #0d1117;
+        background: $dark-bg-alt;
         border: 1px solid $dark-border;
         box-shadow:
-          0 8px 40px rgba(0, 0, 0, 0.5),
+          0 8px 40px rgba($black, 0.5),
           0 0 60px rgba(var(--accent-rgb), 0.06);
       }
       [data-theme='light'] & {
-        background: #fafbfc;
+        background: $light-bg-alt;
         border: 1px solid $light-border;
         box-shadow:
-          0 8px 40px rgba(0, 0, 0, 0.08),
+          0 8px 40px rgba($black, 0.08),
           0 0 60px rgba(var(--accent-rgb), 0.04);
       }
 
@@ -54,13 +54,13 @@
         [data-theme='dark'] & {
           border-color: rgba(var(--accent-rgb), 0.25);
           box-shadow:
-            0 16px 56px rgba(0, 0, 0, 0.6),
+            0 16px 56px rgba($black, 0.6),
             0 0 80px rgba(var(--accent-rgb), 0.1);
         }
         [data-theme='light'] & {
           border-color: rgba(var(--accent-rgb), 0.15);
           box-shadow:
-            0 16px 56px rgba(0, 0, 0, 0.12),
+            0 16px 56px rgba($black, 0.12),
             0 0 80px rgba(var(--accent-rgb), 0.06);
         }
       }
@@ -73,11 +73,11 @@
         padding: $space-sm $space-md;
 
         [data-theme='dark'] & {
-          background: #161b22;
+          background: $dark-surface-alt;
           border-bottom: 1px solid $dark-border;
         }
         [data-theme='light'] & {
-          background: #f0f1f3;
+          background: $light-surface-alt;
           border-bottom: 1px solid $light-border;
         }
 
@@ -90,9 +90,9 @@
             height: 10px;
             border-radius: 50%;
 
-            &.dot-red    { background: #ff5f57; }
-            &.dot-yellow { background: #febc2e; }
-            &.dot-green  { background: #28c840; }
+            &.dot-red    { background: $danger; }
+            &.dot-yellow { background: $warning; }
+            &.dot-green  { background: $success; }
           }
         }
 
@@ -126,8 +126,8 @@
           transition: background $transition-fast;
 
           &:hover {
-            [data-theme='dark'] & { background: rgba(255, 255, 255, 0.03); }
-            [data-theme='light'] & { background: rgba(0, 0, 0, 0.03); }
+            [data-theme='dark'] & { background: rgba($white, 0.03); }
+            [data-theme='light'] & { background: rgba($black, 0.03); }
           }
 
           .line-number {
@@ -137,8 +137,8 @@
             flex-shrink: 0;
             user-select: none;
 
-            [data-theme='dark'] & { color: #484f58; }
-            [data-theme='light'] & { color: #b0b8c1; }
+            [data-theme='dark'] & { color: $syntax-dark-linenum; }
+            [data-theme='light'] & { color: $syntax-light-linenum; }
           }
 
           .line-content {
@@ -148,20 +148,20 @@
 
         // ─── Syntax Token Colors ───
         .tok-keyword {
-          [data-theme='dark'] & { color: #ff7b72; }
-          [data-theme='light'] & { color: #cf222e; }
+          [data-theme='dark'] & { color: $syntax-dark-keyword; }
+          [data-theme='light'] & { color: $syntax-light-keyword; }
         }
         .tok-variable {
-          [data-theme='dark'] & { color: #d2a8ff; }
-          [data-theme='light'] & { color: #8250df; }
+          [data-theme='dark'] & { color: $syntax-dark-variable; }
+          [data-theme='light'] & { color: $syntax-light-variable; }
         }
         .tok-key {
-          [data-theme='dark'] & { color: #79c0ff; }
-          [data-theme='light'] & { color: #0550ae; }
+          [data-theme='dark'] & { color: $syntax-dark-key; }
+          [data-theme='light'] & { color: $syntax-light-key; }
         }
         .tok-string {
-          [data-theme='dark'] & { color: #a5d6ff; }
-          [data-theme='light'] & { color: #0a3069; }
+          [data-theme='dark'] & { color: $syntax-dark-string; }
+          [data-theme='light'] & { color: $syntax-light-string; }
         }
         .tok-number {
           color: var(--accent);
@@ -170,12 +170,12 @@
         }
         .tok-comment {
           font-style: italic;
-          [data-theme='dark'] & { color: #484f58; }
-          [data-theme='light'] & { color: #8b949e; }
+          [data-theme='dark'] & { color: $syntax-dark-comment; }
+          [data-theme='light'] & { color: $syntax-light-comment; }
         }
         .tok-plain {
-          [data-theme='dark'] & { color: #c9d1d9; }
-          [data-theme='light'] & { color: #24292f; }
+          [data-theme='dark'] & { color: $syntax-dark-plain; }
+          [data-theme='light'] & { color: $syntax-light-plain; }
         }
 
         // ─── Blinking Cursor ───
@@ -202,12 +202,12 @@
         font-size: 0.68rem;
 
         [data-theme='dark'] & {
-          background: #161b22;
+          background: $dark-surface-alt;
           border-top: 1px solid $dark-border;
           color: $dark-text-muted;
         }
         [data-theme='light'] & {
-          background: #f0f1f3;
+          background: $light-surface-alt;
           border-top: 1px solid $light-border;
           color: $light-text-muted;
         }
@@ -226,7 +226,7 @@
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #28c840;
+          background: $success;
           display: inline-block;
           animation: pulse 2.5s ease-in-out infinite;
         }
