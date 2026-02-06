@@ -22,6 +22,8 @@ html {
 body {
   font-family: $font-primary;
   line-height: 1.7;
+  min-height: 100vh;
+  overflow-y: auto;
   overflow-x: hidden;
   transition: background-color $transition-normal, color $transition-normal;
 }
@@ -52,11 +54,16 @@ a {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
-  [data-theme='dark'] & {
+[data-theme='dark'] {
+  &::-webkit-scrollbar-track,
+  *::-webkit-scrollbar-track {
     background: $dark-bg;
   }
-  [data-theme='light'] & {
+}
+
+[data-theme='light'] {
+  &::-webkit-scrollbar-track,
+  *::-webkit-scrollbar-track {
     background: $light-bg;
   }
 }
@@ -81,10 +88,8 @@ a {
   padding: $space-4xl $space-xl;
   max-width: $max-width;
   margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  min-height: calc(100vh - $nav-height);
+  scroll-margin-top: $nav-height;
 
   @include tablet {
     padding: $space-3xl $space-lg;

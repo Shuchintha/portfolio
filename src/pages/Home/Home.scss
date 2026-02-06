@@ -5,7 +5,7 @@
   min-height: 100vh;
   @include flex-center;
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   padding-top: $nav-height;
 
   // ─── Animated Background Orbs ───
@@ -275,8 +275,8 @@
           top: 10%;
           right: -30px;
           animation-delay: 0s;
-          border-color: #61DAFB;
-          color: #61DAFB;
+          border-color: #19f611;
+          color: #19f611;
         }
 
         &.badge-ts {
@@ -291,8 +291,8 @@
           bottom: 5%;
           right: -20px;
           animation-delay: 2s;
-          border-color: #DD0031;
-          color: #DD0031;
+          border-color: #8d3ddc;
+          color: #8d3ddc;
         }
       }
     }

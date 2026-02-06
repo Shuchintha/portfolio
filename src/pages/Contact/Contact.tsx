@@ -32,7 +32,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact section">
+    <section className="contact section" id="contact">
       <div className="section-header">
         <h2 className="section-title">
           Get In <span className="accent">Touch</span>

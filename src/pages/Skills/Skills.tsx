@@ -39,7 +39,7 @@ const Skills = () => {
   }, []);
 
   return (
-    <section className="skills section" ref={ref}>
+    <section className="skills section" id="skills" ref={ref}>
       <div className="section-header">
         <h2 className="section-title">
           My <span className="accent">Skills</span>

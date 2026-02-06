@@ -4,7 +4,7 @@ import './Experience.scss';
 
 const Experience = () => {
   return (
-    <section className="experience section">
+    <section className="experience section" id="experience">
       <div className="section-header">
         <h2 className="section-title">
           Work <span className="accent">Experience</span>

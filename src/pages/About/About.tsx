@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import {
   FiUser,
   FiArrowRight,
@@ -20,7 +19,7 @@ const highlights = [
 
 const About = () => {
   return (
-    <section className="about section">
+    <section className="about section" id="about">
       <div className="section-header">
         <h2 className="section-title">
           About <span className="accent">Me</span>
@@ -39,7 +38,7 @@ const About = () => {
               <span className="about-label">Shuchintha S.</span>
             </div>
             <div className="stat-badge stat-years">
-              <span className="stat-number">5+</span>
+              <span className="stat-number">10+</span>
               <span className="stat-label">Years Exp</span>
             </div>
             <div className="stat-badge stat-projects">
@@ -51,10 +50,10 @@ const About = () => {
 
         <div className="about-text">
           <p className="about-intro animate-fade-in-up stagger-1">
-            // who am i?
+            // Who am i?
           </p>
           <p className="about-description animate-fade-in-up stagger-2">
-            Over 5+ years of professional experience developing enterprise-grade web applications
+            Over 10+ years of professional experience developing enterprise-grade web applications
             using both React and Angular. I specialize in designing robust TypeScript-based
             architectures, ranging from Angular's RxJS-driven streams and NgModules to React's
             functional components and Hooks API.
@@ -83,9 +82,9 @@ const About = () => {
             <a href="#" className="btn-primary">
               <FiDownload /> Download CV
             </a>
-            <Link to="/skills" className="btn-outline">
+            <a href="#skills" className="btn-outline">
               View Skills <FiArrowRight />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

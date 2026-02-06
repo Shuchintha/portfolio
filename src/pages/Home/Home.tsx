@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
 import { FiArrowRight, FiMail } from 'react-icons/fi';
 import './Home.scss';
 
 const Home = () => {
   return (
-    <section className="hero">
+    <section className="hero" id="home">
       {/* Background effects */}
       <div className="hero-bg">
         <div className="orb orb-1" />
@@ -28,12 +27,12 @@ const Home = () => {
             exceptional digital experiences.
           </p>
           <div className="hero-actions">
-            <Link to="/contact" className="btn-primary">
+            <a href="#contact" className="btn-primary">
               <FiMail /> Get In Touch
-            </Link>
-            <Link to="/about" className="btn-outline">
+            </a>
+            <a href="#about" className="btn-outline">
               Learn More <FiArrowRight />
-            </Link>
+            </a>
           </div>
         </div>
 

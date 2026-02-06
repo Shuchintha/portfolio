@@ -1,29 +1,28 @@
 import type { SkillCategory, Experience, NavLink, SocialLink } from '../types';
 
 export const navLinks: NavLink[] = [
-  { label: 'Home', path: '/' },
-  { label: 'About', path: '/about' },
-  { label: 'Skills', path: '/skills' },
-  { label: 'Experience', path: '/experience' },
-  { label: 'Contact', path: '/contact' },
+  { label: 'Home', path: '#home' },
+  { label: 'About', path: '#about' },
+  { label: 'Skills', path: '#skills' },
+  { label: 'Experience', path: '#experience' },
+  { label: 'Contact', path: '#contact' },
 ];
 
 export const socialLinks: SocialLink[] = [
   { name: 'GitHub', url: 'https://github.com/shuchintha', icon: 'FaGithub' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/shuchintha', icon: 'FaLinkedinIn' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/shuchinthasrinivasa/', icon: 'FaLinkedinIn' },
   { name: 'Twitter', url: 'https://twitter.com/shuchintha', icon: 'FaTwitter' },
-  { name: 'Email', url: 'mailto:shuchintha@example.com', icon: 'FaEnvelope' },
+  { name: 'Email', url: 'mailto:shuchinthas397@gmail.com', icon: 'FaEnvelope' },
 ];
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: 'Frontend Frameworks',
+    title: 'Frontend',
     icon: 'FaReact',
     skills: [
       { name: 'React', level: 95 },
       { name: 'Angular', level: 90 },
       { name: 'Next.js', level: 80 },
-      { name: 'Vue.js', level: 65 },
     ],
   },
   {
@@ -51,13 +50,13 @@ export const skillCategories: SkillCategory[] = [
     icon: 'FaPalette',
     skills: [
       { name: 'Tailwind CSS', level: 90 },
-      { name: 'Material UI', level: 85 },
       { name: 'SASS / SCSS', level: 90 },
+      { name: 'Material UI', level: 85 },
       { name: 'Styled Components', level: 80 },
     ],
   },
   {
-    title: 'Backend & APIs',
+    title: 'APIs',
     icon: 'FaServer',
     skills: [
       { name: 'GraphQL', level: 85 },
@@ -84,7 +83,7 @@ export const experiences: Experience[] = [
     role: 'Senior Frontend Developer',
     company: 'Tech Innovations Inc.',
     duration: 'Jan 2023 – Present',
-    location: 'San Francisco, CA',
+    location: 'Milpitas, CA',
     description: [
       'Led the migration of a monolithic Angular app to a micro-frontend React architecture, improving load times by 40%.',
       'Architected a scalable design system using Material UI and Tailwind CSS, adopted across 5+ product teams.',

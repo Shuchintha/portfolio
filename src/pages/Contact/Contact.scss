@@ -81,7 +81,7 @@
             letter-spacing: 1px;
             font-weight: 600;
             margin-bottom: 2px;
-
+            padding: 10px;
             [data-theme='dark'] & {
               color: $dark-text-muted;
             }
