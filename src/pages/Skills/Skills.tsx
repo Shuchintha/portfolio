@@ -7,7 +7,7 @@ import {
   FaPalette,
   FaServer,
   FaTools,
-  FaChevronRight,
+  FaArrowRight,
 } from 'react-icons/fa';
 import { skillCategories } from '../../data/portfolioData';
 import './Skills.scss';
@@ -21,107 +21,121 @@ const iconMap: Record<string, ReactNode> = {
   FaTools: <FaTools />,
 };
 
-// Map categories to specific accent class names
-const categoryClassMap: Record<string, string> = {
-  'Frontend': 'cat-frontend',
-  'Languages': 'cat-languages',
-  'State Management': 'cat-state',
-  'Styling & UI': 'cat-style',
-  'APIs': 'cat-api',
-  'Tools & DevOps': 'cat-tools',
+// Category Colors for dynamic theming
+const categoryColors: Record<string, string> = {
+  'Frontend': '#61DAFB',
+  'Languages': '#3178C6',
+  'State Management': '#764ABC',
+  'Styling & UI': '#DB7093',
+  'APIs': '#009688',
+  'Tools & DevOps': '#F05032',
 };
 
 const Skills = () => {
-  const [activeId, setActiveId] = useState<string | null>('Frontend');
-
-  const handlePanelClick = (title: string) => {
-    // toggle if clicking the same one, but keep at least one open on desktop usually feels better
-    // For this design, let's always have one open on desktop to maintain the layout integrity
-    setActiveId(title);
-  };
+  const [activeTab, setActiveTab] = useState(skillCategories[0]);
 
   return (
     <section className="skills-section section" id="skills">
-      <div className="container-fluid">
+      <div className="container">
         <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
         >
           <h2 className="section-title">
-            Skills <span className="accent">Ecosystem</span>
+            <span className="title-highlight">Technical</span> Command
           </h2>
-          <p className="section-subtitle">
-            Explore my technical expertise by expanding the zones below.
-          </p>
+          <div className="header-line" />
         </motion.div>
 
-        <div className="accordion-container">
-          {skillCategories.map((category) => {
-            const isActive = activeId === category.title;
-            const catClass = categoryClassMap[category.title] || 'cat-default';
-
-            return (
-              <motion.div
+        <div className="skills-interface">
+          {/* 1. Sidebar Navigation */}
+          <div className="skills-nav">
+            {skillCategories.map((category) => (
+              <button
                 key={category.title}
-                className={`accordion-panel ${catClass} ${isActive ? 'active' : ''}`}
-                onClick={() => handlePanelClick(category.title)}
-                layout
-                transition={{ type: 'spring', stiffness: 200, damping: 25 }}
+                onClick={() => setActiveTab(category)}
+                className={`nav-item ${activeTab.title === category.title ? 'active' : ''}`}
+                style={{
+                  // @ts-ignore custom property for css
+                  '--cat-color': categoryColors[category.title]
+                }}
               >
-                {/* Background Pattern/Gradient */}
-                <div className="panel-bg" />
+                <span className="nav-icon">{iconMap[category.icon]}</span>
+                <span className="nav-label">{category.title}</span>
+                {activeTab.title === category.title && (
+                  <motion.div
+                    className="active-bg"
+                    layoutId="activeTabBg"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
 
-                {/* Collapsed Content (Visible when inactive or active) */}
-                <div className="panel-header">
-                  <span className="panel-icon">{iconMap[category.icon]}</span>
-                  <h3 className="panel-title-vertical">{category.title}</h3>
-                  <motion.div 
-                    className="active-indicator"
-                    animate={{ rotate: isActive ? 90 : 0 }}
+          {/* 2. Content Display Area */}
+          <div className="skills-display">
+            {/* Dynamic Background Mesh Gradient */}
+            <motion.div
+              className="mesh-gradient"
+              animate={{
+                background: `radial-gradient(circle at 50% 50%, ${categoryColors[activeTab.title]}20 0%, transparent 70%)`
+              }}
+              transition={{ duration: 0.5 }}
+            />
+
+            <AnimatePresence mode='wait'>
+              <motion.div
+                key={activeTab.title}
+                className="display-content"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="display-header">
+                  <div 
+                    className="header-icon-large"
+                    style={{ color: categoryColors[activeTab.title] }}
                   >
-                    <FaChevronRight />
-                  </motion.div>
+                    {iconMap[activeTab.icon]}
+                  </div>
+                  <h3 className="display-title">{activeTab.title}</h3>
                 </div>
 
-                {/* Expanded Content */}
-                <AnimatePresence mode='wait'>
-                  {isActive && (
+                <div className="skills-grid">
+                  {activeTab.skills.map((skill, index) => (
                     <motion.div
-                      className="panel-content"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3, delay: 0.2 }}
+                      key={skill.name}
+                      className="tech-card"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                      style={{ 
+                        // @ts-ignore
+                        '--accent': categoryColors[activeTab.title] 
+                      }}
                     >
-                      <h3 className="panel-title-horizontal">{category.title}</h3>
-                      
-                      <div className="skills-list">
-                        {category.skills.map((skill, index) => (
-                          <div key={skill.name} className="skill-item">
-                             <div className="skill-info">
-                               <span className="skill-name">{skill.name}</span>
-                               <span className="skill-percent">{skill.level}%</span>
-                             </div>
-                             <div className="skill-bar-track">
-                               <motion.div
-                                 className="skill-bar-fill"
-                                 initial={{ width: 0 }}
-                                 animate={{ width: `${skill.level}%` }}
-                                 transition={{ duration: 0.8, delay: 0.3 + (index * 0.1), ease: "circOut" }}
-                               />
-                             </div>
-                          </div>
-                        ))}
+                      <div className="tech-card-content">
+                        <span className="tech-name">{skill.name}</span>
+                        <FaArrowRight className="tech-arrow" />
                       </div>
+                      {skill.desc && (
+                        <div className="tech-desc">
+                          {skill.desc}
+                        </div>
+                      )}
+                      <div className="tech-card-border" />
                     </motion.div>
-                  )}
-                </AnimatePresence>
+                  ))}
+                </div>
               </motion.div>
-            );
-          })}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

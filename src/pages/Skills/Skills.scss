@@ -2,322 +2,358 @@
 @use '../../styles/mixins' as *;
 
 .skills-section {
-  padding-top: calc(#{$nav-height} + 2rem);
+  padding-top: calc(#{$nav-height} + 3rem);
   padding-bottom: $space-4xl;
-  overflow: hidden;
-
-  // Utilize full width for this impactful design
-  .container-fluid {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 $space-md;
-
-    @include tablet {
-      max-width: 720px;
-    }
-  }
 }
 
 .section-header {
-  text-align: center;
   margin-bottom: $space-3xl;
-  padding: 0 $space-lg;
-
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
   .section-title {
-    font-size: 2.5rem;
-    margin-bottom: $space-sm;
-    font-weight: 800;
+    font-size: 3rem; // Bigger impact
+    font-weight: 300; // Thin modern look
+    letter-spacing: -1px;
+    margin-bottom: $space-lg;
+    text-align: center;
+    color: $light-text;
     
-    .accent {
-      background: linear-gradient(135deg, $light-accent, darken($light-accent, 20%));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    [data-theme='dark'] & {
+      color: $dark-text;
+    }
 
+    .title-highlight {
+      font-weight: 800;
+      color: $light-text; // Keep standard color but bold
+      
       [data-theme='dark'] & {
-        background: linear-gradient(135deg, $dark-accent-light, $dark-accent);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+          color: $dark-text;
       }
+    }
+  }
+
+  .header-line {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, $light-accent, transparent);
+    border-radius: 2px;
+    
+    [data-theme='dark'] & {
+      background: linear-gradient(90deg, $dark-accent-light, transparent);
     }
   }
 }
 
-// ─── Categories Color Map ───
-$cat-colors: (
-  'frontend': #61DAFB, // React Blue
-  'languages': #3178C6, // TS Blue
-  'state': #764ABC, // Redux Purple
-  'style': #DB7093, // SASS Pink
-  'api': #009688, // GraphQL Teal
-  'tools': #F05032  // Git Orange
-);
-
-.accordion-container {
+.skills-interface {
   display: flex;
-  height: 600px; // Fixed height for desktop accordion
-  gap: $space-md;
-  width: 100%;
-  
-  @include tablet {
-    flex-direction: column;
-    height: auto;
-    gap: $space-sm;
-  }
-}
-
-.accordion-panel {
-  position: relative;
-  flex: 1; // Default collapsed state
+  min-height: 500px;
+  background: white;
   border-radius: $border-radius-lg;
-  overflow: hidden;
-  cursor: pointer;
-  transition: flex 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  background: $light-surface;
-  box-shadow: $light-card-shadow;
+  box-shadow: $light-card-shadow-lg;
   border: 1px solid rgba($black, 0.05);
-  display: flex;
-  flex-direction: column;
+  overflow: hidden; // For the mesh gradient
 
   [data-theme='dark'] & {
     background: $dark-bg-alt;
     border: 1px solid rgba($white, 0.05);
-    box-shadow: $dark-card-shadow;
+    box-shadow: $dark-card-shadow-lg;
   }
 
-  // Active State Expansion
-  &.active {
-    flex: 3.5; // Expand significantly
-    cursor: default;
-    box-shadow: $light-card-shadow-lg;
+  @include tablet {
+    flex-direction: column;
+    height: auto;
+  }
+}
 
+// ─── Sidebar Nav ───
+.skills-nav {
+  width: 300px;
+  border-right: 1px solid rgba($black, 0.05);
+  display: flex;
+  flex-direction: column;
+  padding: $space-lg 0;
+  // background: rgba($black, 0.02);
+  
+  [data-theme='dark'] & {
+    border-right: 1px solid rgba($white, 0.05);
+    // background: rgba($white, 0.02);
+  }
+
+  @include tablet {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba($black, 0.05);
+    flex-direction: row;
+    overflow-x: auto;
+    padding: $space-md;
+    gap: $space-sm;
+    
     [data-theme='dark'] & {
-      box-shadow: $dark-card-shadow-lg;
+      border-bottom: 1px solid rgba($white, 0.05);
     }
+    
+    // Hide scrollbar
+    &::-webkit-scrollbar { display: none; }
+  }
+}
 
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding: $space-md $space-xl;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s;
+  color: $light-text-muted;
+  
+  [data-theme='dark'] & {
+    color: $dark-text-muted;
+  }
+  
+  @include tablet {
+    width: auto;
+    white-space: nowrap;
+    padding: $space-sm $space-md;
+    border-radius: 100px;
+  }
+
+  // Hover State
+  &:hover:not(.active) {
+    color: $light-text;
+    background: rgba($black, 0.03);
+    
+    [data-theme='dark'] & {
+        color: $dark-text;
+        background: rgba($white, 0.03);
+    }
+  }
+
+  // Active State styling target
+  &.active {
+    color: var(--cat-color);
+    font-weight: 600;
+       
     @include tablet {
-       flex: auto; // Reset flex for column layout
+      color: white; // On mobile pills, text is white
+      [data-theme='dark'] & { color: white; }
+    }
+  }
+
+  // Active Background (Desktop sets a strip, Mobile sets a pill via Framer Motion)
+  .active-bg {
+    position: absolute;
+    inset: 0;
+    
+    // Desktop: Left Border Strip style
+    border-left: 3px solid var(--cat-color);
+    background: linear-gradient(90deg, rgba(var(--cat-color), 0.1), transparent);
+    z-index: -1;
+    
+    @include tablet {
+       border-left: none;
+       background: var(--cat-color);
+       border-radius: 100px;
+    }
+  }
+
+  .nav-icon {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    @include tablet {
+      font-size: 1rem;
     }
   }
   
-  // Non-active hover effect
-  &:not(.active):hover {
-    flex: 1.2;
-    background: darken($light-surface, 2%);
-    
-    [data-theme='dark'] & {
-        background: lighten($dark-bg-alt, 2%);
-    }
-  }
-
-  // ─── Theme Colors Generation ───
-  @each $name, $color in $cat-colors {
-    &.cat-#{$name} {
-      .panel-bg {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba($color, 0.05) 0%, transparent 100%);
-        opacity: 0.5;
-        transition: opacity 0.3s;
-        
-        [data-theme='dark'] & {
-          background: linear-gradient(180deg, rgba($color, 0.15) 0%, transparent 100%);
-        }
-      }
-
-      &.active .panel-bg {
-        opacity: 1;
-      }
-      
-      .panel-icon {
-        color: $color;
-      }
-      
-      .skill-bar-fill {
-        background: $color;
-        box-shadow: 0 0 10px rgba($color, 0.4);
-      }
-    }
-  }
-
-  // ─── Panel Layout ───
-  .panel-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: $space-lg;
-    gap: $space-md;
-    height: 100%;
-    width: 100%;
-    min-width: 80px; // Ensure header doesn't crush too small
-    transition: all 0.3s ease;
-    z-index: 10;
+  .nav-label {
+    font-size: 1rem;
     
     @include tablet {
-      flex-direction: row;
-      height: 80px; // Fixed header height on mobile
-      justify-content: flex-start;
-    }
-
-    .panel-icon {
-      font-size: 2rem;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-    }
-
-    .panel-title-vertical {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      font-size: 1.2rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      white-space: nowrap;
-      text-transform: uppercase;
-      color: $light-text-muted;
-      margin-top: auto;
-      margin-bottom: auto;
-
-      [data-theme='dark'] & {
-        color: $dark-text-muted;
-      }
-      
-      @include tablet {
-        writing-mode: horizontal-tb;
-        transform: none;
-        margin: 0;
-        font-size: 1.1rem;
-      }
-    }
-
-    .active-indicator {
-      margin-top: auto;
-      font-size: 1.2rem;
-      color: $light-text-muted;
-      opacity: 0.5;
-
-      @include tablet {
-        margin-top: 0;
-        margin-left: auto;
-      }
+      font-size: 0.9rem;
     }
   }
+}
 
-  // Hide vertical elements when active on desktop to make room for content
-  &.active {
-    .panel-title-vertical {
-      display: none; // Hide the vertical title when expanded
-      @include tablet {
-        display: block; // Keep visible on mobile
-      }
-    }
-    
-    .panel-header {
-      width: 80px; // Sidebar width when expanded
-      border-right: 1px solid rgba($black, 0.05);
+// ─── Display Content ───
+.skills-display {
+  flex: 1;
+  position: relative;
+  padding: $space-3xl;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-      [data-theme='dark'] & {
-        border-right: 1px solid rgba($white, 0.05);
-      }
-      
-      @include tablet {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid rgba($black, 0.05);
-        [data-theme='dark'] & {
-           border-bottom: 1px solid rgba($white, 0.05);
-        }
-      }
-    }
+  @include tablet {
+    padding: $space-xl $space-lg;
+    min-height: 400px;
   }
 
-  // ─── Content Area ───
-  .panel-content {
+  // Mesh Gradient Background
+  .mesh-gradient {
     position: absolute;
-    left: 80px; // Offset by header width
-    top: 0;
-    bottom: 0;
-    right: 0;
-    padding: $space-2xl;
-    overflow-y: auto;
-    z-index: 5;
-    
-    @include tablet {
-      position: relative;
-      left: 0;
-      padding: $space-lg;
-      height: 400px; // Fixed content height on mobile
-    }
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+  }
 
-    .panel-title-horizontal {
+  .display-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .display-header {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    margin-bottom: $space-2xl;
+    
+    .header-icon-large {
+      font-size: 2.5rem;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+    }
+    
+    .display-title {
       font-size: 2rem;
       font-weight: 700;
-      margin-bottom: $space-xl;
       color: $light-text;
-
+      
       [data-theme='dark'] & {
         color: $dark-text;
-      }
-    }
-
-    .skills-list {
-      display: flex;
-      flex-direction: column;
-      gap: $space-lg;
-    }
-
-    .skill-item {
-      .skill-info {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: $space-xs;
-        font-weight: 500;
-        color: $light-text;
-        
-        [data-theme='dark'] & {
-          color: $dark-text;
-        }
-
-        .skill-percent {
-          font-family: $font-mono;
-          opacity: 0.7;
-        }
-      }
-
-      .skill-bar-track {
-        height: 8px;
-        background: rgba($black, 0.05);
-        border-radius: 4px;
-        overflow: hidden;
-        
-        [data-theme='dark'] & {
-          background: rgba($white, 0.1);
-        }
-      }
-      
-      .skill-bar-fill {
-        height: 100%;
-        border-radius: 4px;
-        position: relative;
-        
-        // Shine effect
-        &::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          width: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-          transform: translateX(-100%);
-          animation: shine 2s infinite 1s;
-        }
       }
     }
   }
 }
 
-@keyframes shine {
-  100% {
-    transform: translateX(100%);
+// ─── Tech Cards Grid ───
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $space-md;
+  align-items: flex-start; // Prevent siblings from stretching in height on hover
+}
+
+.tech-card {
+  position: relative;
+  background: rgba($white, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: $space-lg;
+  border-radius: $border-radius;
+  border: 1px solid rgba($black, 0.05);
+  cursor: default;
+  overflow: hidden;
+  
+  [data-theme='dark'] & {
+    background: rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.05);
+  }
+
+  // Hover Effect: Accent Border
+  .tech-card-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: white;
+    box-shadow: 0 10px 30px -5px rgba(0,0,0,0.08);
+
+    [data-theme='dark'] & {
+       background: rgba($white, 0.1);
+    }
+    
+    .tech-card-border {
+      transform: scaleX(1);
+    }
+    
+    .tech-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .tech-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tech-desc {
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    font-size: 0.9rem;
+    color: $light-text-muted;
+    transition: all 0.4s cubic-bezier(0.25, 0.4, 0.25, 1); // Smooth ease
+    line-height: 1.4;
+    
+    [data-theme='dark'] & {
+      color: $dark-text-muted;
+    }
+  }
+
+  .tech-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $light-text;
+    
+    [data-theme='dark'] & {
+      color: $dark-text;
+    }
+  }
+  
+  .tech-arrow {
+    font-size: 0.9rem;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background: white;
+    box-shadow: 0 10px 30px -5px rgba(0,0,0,0.08);
+
+    [data-theme='dark'] & {
+       background: rgba($white, 0.1);
+    }
+    
+    .tech-card-border {
+      transform: scaleX(1);
+    }
+    
+    .tech-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .tech-desc {
+      margin-top: $space-md;
+      max-height: 100px; // Arbitrary max-height for transition
+      opacity: 1;
+    }
   }
 }

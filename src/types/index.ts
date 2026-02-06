@@ -9,6 +9,7 @@ export interface Skill {
   name: string;
   level: number; // 0-100
   icon?: string;
+  desc?: string; // Short description
 }
 
 export interface SkillCategory {
