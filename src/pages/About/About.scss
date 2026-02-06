@@ -1,0 +1,222 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+  padding-top: calc($nav-height + $space-3xl);
+
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: $space-4xl;
+    align-items: center;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: $space-2xl;
+    }
+  }
+
+  .about-visual {
+    position: relative;
+
+    @include tablet {
+      order: -1;
+      @include flex-center;
+    }
+
+    .about-image-frame {
+      position: relative;
+      width: 350px;
+      height: 400px;
+      margin: 0 auto;
+
+      @include mobile {
+        width: 260px;
+        height: 300px;
+      }
+
+      .frame-border {
+        position: absolute;
+        inset: 0;
+        border-radius: $border-radius-lg;
+        border: 2px solid $accent;
+        transform: translate(12px, 12px);
+        z-index: 0;
+      }
+
+      .frame-fill {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: $border-radius-lg;
+        @include flex-center;
+        flex-direction: column;
+        gap: $space-md;
+        z-index: 1;
+        overflow: hidden;
+
+        [data-theme='dark'] & {
+          background: linear-gradient(135deg, $dark-surface, $dark-surface-alt);
+        }
+        [data-theme='light'] & {
+          background: linear-gradient(135deg, $light-surface, $light-surface-alt);
+        }
+
+        .about-icon {
+          font-size: 5rem;
+          color: $accent;
+          opacity: 0.6;
+        }
+
+        .about-label {
+          font-family: $font-mono;
+          font-size: 0.9rem;
+          [data-theme='dark'] & {
+            color: $dark-text-muted;
+          }
+          [data-theme='light'] & {
+            color: $light-text-muted;
+          }
+        }
+
+        // Decorative gradient overlay
+        &::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, transparent 50%, rgba($accent, 0.08));
+          border-radius: $border-radius-lg;
+        }
+      }
+
+      // ─── Stats Badges ───
+      .stat-badge {
+        position: absolute;
+        padding: $space-md $space-lg;
+        border-radius: $border-radius;
+        z-index: 2;
+        text-align: center;
+
+        [data-theme='dark'] & {
+          background: $dark-surface;
+          border: 1px solid $dark-border;
+          box-shadow: $dark-card-shadow;
+        }
+        [data-theme='light'] & {
+          background: $light-surface;
+          border: 1px solid $light-border;
+          box-shadow: $light-card-shadow;
+        }
+
+        .stat-number {
+          font-family: $font-display;
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: $accent;
+          display: block;
+        }
+
+        .stat-label {
+          font-size: 0.75rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+
+          [data-theme='dark'] & {
+            color: $dark-text-muted;
+          }
+          [data-theme='light'] & {
+            color: $light-text-muted;
+          }
+        }
+
+        &.stat-years {
+          top: -20px;
+          right: -30px;
+          animation: float 4s ease-in-out infinite;
+        }
+
+        &.stat-projects {
+          bottom: -15px;
+          left: -25px;
+          animation: float 4s ease-in-out 2s infinite;
+        }
+      }
+    }
+  }
+
+  .about-text {
+    .about-intro {
+      font-family: $font-mono;
+      font-size: 1rem;
+      color: $accent;
+      margin-bottom: $space-md;
+    }
+
+    .about-description {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: $space-lg;
+
+      [data-theme='dark'] & {
+        color: $dark-text-muted;
+      }
+      [data-theme='light'] & {
+        color: $light-text-muted;
+      }
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $space-md;
+      margin-bottom: $space-xl;
+
+      @include mobile {
+        grid-template-columns: 1fr;
+      }
+
+      .highlight-item {
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+        padding: $space-sm 0;
+
+        .highlight-icon {
+          color: $accent;
+          font-size: 1.2rem;
+          flex-shrink: 0;
+        }
+
+        .highlight-text {
+          font-size: 0.95rem;
+          font-weight: 500;
+
+          [data-theme='dark'] & {
+            color: $dark-text;
+          }
+          [data-theme='light'] & {
+            color: $light-text;
+          }
+        }
+      }
+    }
+
+    .about-actions {
+      display: flex;
+      gap: $space-md;
+
+      @include mobile {
+        flex-direction: column;
+      }
+
+      .btn-primary {
+        @include glow-button;
+      }
+
+      .btn-outline {
+        @include outline-button;
+      }
+    }
+  }
+}

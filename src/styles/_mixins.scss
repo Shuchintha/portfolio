@@ -1,0 +1,180 @@
+@use 'variables' as *;
+
+// ─── Responsive Breakpoints ───
+@mixin mobile {
+  @media (max-width: $bp-mobile) { @content; }
+}
+
+@mixin tablet {
+  @media (max-width: $bp-tablet) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: $bp-desktop) { @content; }
+}
+
+// ─── Flex Helpers ───
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ─── Glass Effect ───
+@mixin glass($opacity: 0.08) {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(255, 255, 255, $opacity);
+}
+
+// ─── Card Style ───
+@mixin card {
+  border-radius: $border-radius;
+  transition: transform $transition-normal, box-shadow $transition-normal;
+  
+  [data-theme='dark'] & {
+    background: $dark-surface;
+    border: 1px solid $dark-border;
+    box-shadow: $dark-card-shadow;
+  }
+  [data-theme='light'] & {
+    background: $light-surface;
+    border: 1px solid $light-border;
+    box-shadow: $light-card-shadow;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    [data-theme='dark'] & {
+      box-shadow: 0 12px 40px rgba(108, 99, 255, 0.15);
+    }
+    [data-theme='light'] & {
+      box-shadow: 0 12px 40px rgba(108, 99, 255, 0.12);
+    }
+  }
+}
+
+// ─── Section Title ───
+@mixin section-title {
+  font-family: $font-display;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: $space-lg;
+  position: relative;
+  display: inline-block;
+
+  .accent {
+    color: $accent;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, $accent, $accent-light);
+    border-radius: 2px;
+  }
+}
+
+// ─── Glow Button ───
+@mixin glow-button {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-md $space-xl;
+  border: none;
+  border-radius: 50px;
+  font-family: $font-primary;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  background: linear-gradient(135deg, $accent, $accent-light);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  transition: all $transition-normal;
+  text-decoration: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px $accent-glow;
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// ─── Outline Button ───
+@mixin outline-button {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-md $space-xl;
+  border: 2px solid $accent;
+  border-radius: 50px;
+  font-family: $font-primary;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  background: transparent;
+  color: $accent;
+  transition: all $transition-normal;
+  text-decoration: none;
+
+  &:hover {
+    background: $accent;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px $accent-glow;
+  }
+}
+
+// ─── Text Gradient ───
+@mixin text-gradient {
+  background: linear-gradient(135deg, $accent, $accent-light, $success);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// ─── Skeleton Shimmer ───
+@mixin shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(108, 99, 255, 0.05) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

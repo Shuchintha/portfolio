@@ -1,0 +1,259 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.contact {
+  padding-top: calc($nav-height + $space-3xl);
+
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: $space-4xl;
+    max-width: 950px;
+    margin: 0 auto;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: $space-2xl;
+    }
+  }
+
+  // ─── Left: Contact Info ───
+  .contact-info {
+    .info-title {
+      font-family: $font-display;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: $space-md;
+
+      [data-theme='dark'] & {
+        color: $dark-text;
+      }
+      [data-theme='light'] & {
+        color: $light-text;
+      }
+    }
+
+    .info-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: $space-xl;
+
+      [data-theme='dark'] & {
+        color: $dark-text-muted;
+      }
+      [data-theme='light'] & {
+        color: $light-text-muted;
+      }
+    }
+
+    .info-items {
+      display: flex;
+      flex-direction: column;
+      gap: $space-lg;
+      margin-bottom: $space-xl;
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: $space-md;
+
+        .info-icon {
+          @include flex-center;
+          width: 48px;
+          height: 48px;
+          border-radius: $border-radius-sm;
+          font-size: 1.2rem;
+          color: $accent;
+          flex-shrink: 0;
+
+          [data-theme='dark'] & {
+            background: rgba($accent, 0.12);
+          }
+          [data-theme='light'] & {
+            background: rgba($accent, 0.08);
+          }
+        }
+
+        .info-details {
+          .info-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 2px;
+
+            [data-theme='dark'] & {
+              color: $dark-text-muted;
+            }
+            [data-theme='light'] & {
+              color: $light-text-muted;
+            }
+          }
+
+          .info-value {
+            font-size: 1rem;
+            font-weight: 500;
+
+            [data-theme='dark'] & {
+              color: $dark-text;
+            }
+            [data-theme='light'] & {
+              color: $light-text;
+            }
+          }
+        }
+      }
+    }
+
+    .social-links {
+      display: flex;
+      gap: $space-md;
+
+      a {
+        @include flex-center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        transition: all $transition-fast;
+
+        [data-theme='dark'] & {
+          background: $dark-surface;
+          color: $dark-text-muted;
+          border: 1px solid $dark-border;
+        }
+        [data-theme='light'] & {
+          background: $light-surface-alt;
+          color: $light-text-muted;
+          border: 1px solid $light-border;
+        }
+
+        &:hover {
+          background: $accent;
+          color: #fff;
+          border-color: $accent;
+          transform: translateY(-3px);
+          box-shadow: 0 6px 20px $accent-glow;
+        }
+      }
+    }
+  }
+
+  // ─── Right: Contact Form ───
+  .contact-form-wrapper {
+    @include card;
+    padding: $space-xl;
+
+    .form-group {
+      margin-bottom: $space-lg;
+
+      label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: $space-sm;
+
+        [data-theme='dark'] & {
+          color: $dark-text;
+        }
+        [data-theme='light'] & {
+          color: $light-text;
+        }
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: $space-md;
+        border-radius: $border-radius-sm;
+        font-family: $font-primary;
+        font-size: 1rem;
+        transition: all $transition-fast;
+        outline: none;
+
+        [data-theme='dark'] & {
+          background: $dark-bg;
+          border: 1px solid $dark-border;
+          color: $dark-text;
+
+          &::placeholder {
+            color: rgba($dark-text-muted, 0.5);
+          }
+        }
+        [data-theme='light'] & {
+          background: $light-bg;
+          border: 1px solid $light-border;
+          color: $light-text;
+
+          &::placeholder {
+            color: rgba($light-text-muted, 0.5);
+          }
+        }
+
+        &:focus {
+          border-color: $accent;
+          box-shadow: 0 0 0 3px rgba($accent, 0.1);
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 140px;
+      }
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $space-lg;
+
+      @include mobile {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn-submit {
+      @include glow-button;
+      width: 100%;
+      justify-content: center;
+      padding: $space-md $space-xl;
+      font-size: 1.05rem;
+    }
+
+    .form-success {
+      @include flex-center;
+      flex-direction: column;
+      gap: $space-md;
+      padding: $space-2xl;
+      text-align: center;
+      animation: scaleIn 0.4s ease-out;
+
+      .success-icon {
+        font-size: 3rem;
+        color: $success;
+      }
+
+      .success-title {
+        font-family: $font-display;
+        font-size: 1.3rem;
+        font-weight: 600;
+
+        [data-theme='dark'] & {
+          color: $dark-text;
+        }
+        [data-theme='light'] & {
+          color: $light-text;
+        }
+      }
+
+      .success-text {
+        [data-theme='dark'] & {
+          color: $dark-text-muted;
+        }
+        [data-theme='light'] & {
+          color: $light-text-muted;
+        }
+      }
+    }
+  }
+}

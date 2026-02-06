@@ -1,0 +1,90 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  padding: $space-2xl $space-xl;
+  text-align: center;
+  position: relative;
+
+  [data-theme='dark'] & {
+    border-top: 1px solid $dark-border;
+  }
+  [data-theme='light'] & {
+    border-top: 1px solid $light-border;
+  }
+
+  .footer-container {
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
+  .footer-social {
+    display: flex;
+    justify-content: center;
+    gap: $space-md;
+    margin-bottom: $space-lg;
+
+    a {
+      @include flex-center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      transition: all $transition-fast;
+
+      [data-theme='dark'] & {
+        background: $dark-surface;
+        color: $dark-text-muted;
+        border: 1px solid $dark-border;
+      }
+      [data-theme='light'] & {
+        background: $light-surface-alt;
+        color: $light-text-muted;
+        border: 1px solid $light-border;
+      }
+
+      &:hover {
+        background: $accent;
+        color: #fff;
+        border-color: $accent;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px $accent-glow;
+      }
+    }
+  }
+
+  .footer-text {
+    font-size: 0.9rem;
+
+    [data-theme='dark'] & {
+      color: $dark-text-muted;
+    }
+    [data-theme='light'] & {
+      color: $light-text-muted;
+    }
+
+    .heart {
+      color: $danger;
+      display: inline-block;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .name {
+      color: $accent;
+      font-weight: 600;
+    }
+  }
+
+  .footer-tech {
+    margin-top: $space-sm;
+    font-size: 0.8rem;
+    font-family: $font-mono;
+
+    [data-theme='dark'] & {
+      color: $dark-text-muted;
+    }
+    [data-theme='light'] & {
+      color: $light-text-muted;
+    }
+  }
+}

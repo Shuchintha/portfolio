@@ -1,0 +1,194 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.experience {
+  padding-top: calc($nav-height + $space-3xl);
+
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      border-radius: 1px;
+
+      [data-theme='dark'] & {
+        background: linear-gradient(to bottom, $accent, $dark-border);
+      }
+      [data-theme='light'] & {
+        background: linear-gradient(to bottom, $accent, $light-border);
+      }
+
+      @include tablet {
+        left: 20px;
+      }
+    }
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 72px;
+    margin-bottom: $space-3xl;
+
+    @include tablet {
+      padding-left: 56px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 18px;
+      top: 8px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: $accent;
+      border: 4px solid transparent;
+      z-index: 1;
+
+      [data-theme='dark'] & {
+        border-color: $dark-bg;
+        box-shadow: 0 0 0 4px rgba($accent, 0.2);
+      }
+      [data-theme='light'] & {
+        border-color: $light-bg;
+        box-shadow: 0 0 0 4px rgba($accent, 0.15);
+      }
+
+      @include tablet {
+        left: 10px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .timeline-card {
+      @include card;
+      padding: $space-xl;
+
+      .card-header {
+        margin-bottom: $space-lg;
+
+        .role {
+          font-family: $font-display;
+          font-size: 1.3rem;
+          font-weight: 700;
+          margin-bottom: $space-xs;
+
+          [data-theme='dark'] & {
+            color: $dark-text;
+          }
+          [data-theme='light'] & {
+            color: $light-text;
+          }
+        }
+
+        .company {
+          font-size: 1.05rem;
+          color: $accent;
+          font-weight: 600;
+          margin-bottom: $space-sm;
+        }
+
+        .meta {
+          display: flex;
+          gap: $space-lg;
+          flex-wrap: wrap;
+
+          .meta-item {
+            display: flex;
+            align-items: center;
+            gap: $space-xs;
+            font-size: 0.9rem;
+
+            [data-theme='dark'] & {
+              color: $dark-text-muted;
+            }
+            [data-theme='light'] & {
+              color: $light-text-muted;
+            }
+
+            svg {
+              color: $accent;
+              font-size: 0.85rem;
+            }
+          }
+        }
+      }
+
+      .card-body {
+        margin-bottom: $space-lg;
+
+        ul {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: $space-sm;
+
+          li {
+            display: flex;
+            gap: $space-sm;
+            font-size: 0.95rem;
+            line-height: 1.7;
+
+            [data-theme='dark'] & {
+              color: $dark-text-muted;
+            }
+            [data-theme='light'] & {
+              color: $light-text-muted;
+            }
+
+            &::before {
+              content: '▹';
+              color: $accent;
+              font-weight: 700;
+              flex-shrink: 0;
+              margin-top: 2px;
+            }
+          }
+        }
+      }
+
+      .card-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $space-sm;
+
+        .tech-tag {
+          padding: $space-xs $space-md;
+          border-radius: 50px;
+          font-size: 0.8rem;
+          font-family: $font-mono;
+          font-weight: 500;
+          transition: all $transition-fast;
+
+          [data-theme='dark'] & {
+            background: rgba($accent, 0.1);
+            color: $accent-light;
+            border: 1px solid rgba($accent, 0.2);
+          }
+          [data-theme='light'] & {
+            background: rgba($accent, 0.06);
+            color: $accent;
+            border: 1px solid rgba($accent, 0.15);
+          }
+
+          &:hover {
+            background: $accent;
+            color: #fff;
+            border-color: $accent;
+          }
+        }
+      }
+    }
+  }
+}
