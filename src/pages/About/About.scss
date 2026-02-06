@@ -24,109 +24,211 @@
       @include flex-center;
     }
 
-    .about-image-frame {
-      position: relative;
-      width: 320px;
-      height: 380px;
+    // ─── Code Editor Card ───
+    .code-card {
+      width: 100%;
+      max-width: 420px;
       margin: 0 auto;
+      border-radius: $border-radius;
+      overflow: hidden;
+      transition: transform $transition-normal, box-shadow $transition-normal;
 
-      @include mobile {
-        width: 240px;
-        height: 280px;
+      [data-theme='dark'] & {
+        background: #0d1117;
+        border: 1px solid $dark-border;
+        box-shadow:
+          0 8px 40px rgba(0, 0, 0, 0.5),
+          0 0 60px rgba(var(--accent-rgb), 0.06);
+      }
+      [data-theme='light'] & {
+        background: #fafbfc;
+        border: 1px solid $light-border;
+        box-shadow:
+          0 8px 40px rgba(0, 0, 0, 0.08),
+          0 0 60px rgba(var(--accent-rgb), 0.04);
       }
 
-      .frame-fill {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border-radius: $border-radius-lg;
-        @include flex-center;
-        flex-direction: column;
+      &:hover {
+        transform: translateY(-4px);
+
+        [data-theme='dark'] & {
+          border-color: rgba(var(--accent-rgb), 0.25);
+          box-shadow:
+            0 16px 56px rgba(0, 0, 0, 0.6),
+            0 0 80px rgba(var(--accent-rgb), 0.1);
+        }
+        [data-theme='light'] & {
+          border-color: rgba(var(--accent-rgb), 0.15);
+          box-shadow:
+            0 16px 56px rgba(0, 0, 0, 0.12),
+            0 0 80px rgba(var(--accent-rgb), 0.06);
+        }
+      }
+
+      // ─── Title Bar ───
+      .code-card-header {
+        display: flex;
+        align-items: center;
         gap: $space-md;
-        z-index: 1;
-        overflow: hidden;
+        padding: $space-sm $space-md;
 
         [data-theme='dark'] & {
-          background: $dark-surface;
-          border: 1px solid $dark-border;
+          background: #161b22;
+          border-bottom: 1px solid $dark-border;
         }
         [data-theme='light'] & {
-          background: $light-surface;
-          border: 1px solid $light-border;
-          box-shadow: $light-card-shadow;
+          background: #f0f1f3;
+          border-bottom: 1px solid $light-border;
         }
 
-        .about-icon {
-          font-size: 4rem;
-          color: var(--accent);
-          opacity: 0.5;
+        .window-dots {
+          display: flex;
+          gap: 6px;
+
+          .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+
+            &.dot-red    { background: #ff5f57; }
+            &.dot-yellow { background: #febc2e; }
+            &.dot-green  { background: #28c840; }
+          }
         }
 
-        .about-label {
+        .file-name {
           font-family: $font-mono;
-          font-size: 0.85rem;
-          letter-spacing: -0.01em;
+          font-size: 0.75rem;
+          letter-spacing: 0.01em;
 
-          [data-theme='dark'] & {
-            color: $dark-text-muted;
-          }
-          [data-theme='light'] & {
-            color: $light-text-muted;
-          }
+          [data-theme='dark'] & { color: $dark-text-muted; }
+          [data-theme='light'] & { color: $light-text-muted; }
         }
       }
 
-      // ─── Stats Badges (Apple chip-like) ───
-      .stat-badge {
-        position: absolute;
-        padding: $space-md $space-lg;
-        border-radius: $border-radius;
-        z-index: 2;
-        text-align: center;
+      // ─── Code Body ───
+      .code-card-body {
+        padding: $space-lg $space-sm;
+        font-family: $font-mono;
+        font-size: 0.82rem;
+        line-height: 1.85;
+
+        @include mobile {
+          font-size: 0.72rem;
+          padding: $space-md $space-xs;
+        }
+
+        .code-line {
+          display: flex;
+          align-items: center;
+          padding: 0 $space-sm;
+          border-radius: 4px;
+          transition: background $transition-fast;
+
+          &:hover {
+            [data-theme='dark'] & { background: rgba(255, 255, 255, 0.03); }
+            [data-theme='light'] & { background: rgba(0, 0, 0, 0.03); }
+          }
+
+          .line-number {
+            width: 28px;
+            text-align: right;
+            margin-right: $space-md;
+            flex-shrink: 0;
+            user-select: none;
+
+            [data-theme='dark'] & { color: #484f58; }
+            [data-theme='light'] & { color: #b0b8c1; }
+          }
+
+          .line-content {
+            white-space: nowrap;
+          }
+        }
+
+        // ─── Syntax Token Colors ───
+        .tok-keyword {
+          [data-theme='dark'] & { color: #ff7b72; }
+          [data-theme='light'] & { color: #cf222e; }
+        }
+        .tok-variable {
+          [data-theme='dark'] & { color: #d2a8ff; }
+          [data-theme='light'] & { color: #8250df; }
+        }
+        .tok-key {
+          [data-theme='dark'] & { color: #79c0ff; }
+          [data-theme='light'] & { color: #0550ae; }
+        }
+        .tok-string {
+          [data-theme='dark'] & { color: #a5d6ff; }
+          [data-theme='light'] & { color: #0a3069; }
+        }
+        .tok-number {
+          color: var(--accent);
+          font-weight: 600;
+          text-shadow: 0 0 14px rgba(var(--accent-rgb), 0.3);
+        }
+        .tok-comment {
+          font-style: italic;
+          [data-theme='dark'] & { color: #484f58; }
+          [data-theme='light'] & { color: #8b949e; }
+        }
+        .tok-plain {
+          [data-theme='dark'] & { color: #c9d1d9; }
+          [data-theme='light'] & { color: #24292f; }
+        }
+
+        // ─── Blinking Cursor ───
+        .typing-cursor {
+          display: inline-block;
+          width: 8px;
+          height: 1.05em;
+          vertical-align: text-bottom;
+          margin-left: 2px;
+          animation: blink 1.1s step-end infinite;
+
+          [data-theme='dark'] & { background: $dark-text; }
+          [data-theme='light'] & { background: $light-text; }
+        }
+      }
+
+      // ─── Status Bar ───
+      .code-card-footer {
+        display: flex;
+        align-items: center;
+        gap: $space-lg;
+        padding: $space-xs $space-md;
+        font-family: $font-mono;
+        font-size: 0.68rem;
 
         [data-theme='dark'] & {
-          background: $dark-surface;
-          border: 1px solid $dark-border;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--accent-rgb), 0.08);
+          background: #161b22;
+          border-top: 1px solid $dark-border;
+          color: $dark-text-muted;
         }
         [data-theme='light'] & {
-          background: $light-surface;
-          border: 1px solid $light-border;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 0 30px rgba(var(--accent-rgb), 0.06);
+          background: #f0f1f3;
+          border-top: 1px solid $light-border;
+          color: $light-text-muted;
         }
 
-        .stat-number {
-          font-family: $font-display;
-          font-size: 1.6rem;
-          font-weight: 700;
-          letter-spacing: -0.03em;
-          color: var(--accent);
-          display: block;
-          text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3);
+        .footer-item {
+          display: flex;
+          align-items: center;
+          gap: 4px;
         }
 
-        .stat-label {
-          font-size: 0.7rem;
-          font-weight: 500;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-
-          [data-theme='dark'] & {
-            color: $dark-text-muted;
-          }
-          [data-theme='light'] & {
-            color: $light-text-muted;
-          }
+        .status-ready {
+          margin-left: auto;
         }
 
-        &.stat-years {
-          top: -20px;
-          right: -30px;
-        }
-
-        &.stat-projects {
-          bottom: -15px;
-          left: -25px;
+        .status-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #28c840;
+          display: inline-block;
+          animation: pulse 2.5s ease-in-out infinite;
         }
       }
     }

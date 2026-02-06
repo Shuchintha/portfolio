@@ -6,7 +6,7 @@
   @include flex-center;
   position: relative;
   overflow: clip;
-  padding-top: $nav-height;
+  // padding-top: $nav-height;
 
   [data-theme='dark'] & {
     background: $dark-bg;

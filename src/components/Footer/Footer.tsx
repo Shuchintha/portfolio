@@ -51,7 +51,7 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          React · TypeScript · Framer Motion
+          React · TypeScript
         </motion.p>
       </div>
     </footer>

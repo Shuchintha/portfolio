@@ -87,8 +87,6 @@ export const experiences: Experience[] = [
     description: [
       'Led the migration of a monolithic Angular app to a micro-frontend React architecture, improving load times by 40%.',
       'Architected a scalable design system using Material UI and Tailwind CSS, adopted across 5+ product teams.',
-      'Implemented real-time data dashboards using GraphQL subscriptions and Redux Toolkit for state management.',
-      'Mentored a team of 4 junior developers and conducted code reviews to ensure code quality and best practices.',
     ],
     technologies: ['React', 'TypeScript', 'Redux Toolkit', 'GraphQL', 'Material UI', 'Micro-Frontends'],
   },
@@ -101,8 +99,6 @@ export const experiences: Experience[] = [
     description: [
       'Built and maintained complex Angular applications with NgRx state management and RxJS-driven data streams.',
       'Developed secure authentication flows using OAuth 2.0 and JWT token management.',
-      'Integrated RESTful and GraphQL APIs to power interactive data visualization components.',
-      'Improved application performance by implementing lazy loading, code splitting, and optimized bundle strategies.',
     ],
     technologies: ['Angular', 'TypeScript', 'NgRx', 'RxJS', 'OAuth', 'RESTful APIs'],
   },
@@ -115,8 +111,6 @@ export const experiences: Experience[] = [
     description: [
       'Developed responsive, pixel-perfect web applications using React with functional components and Hooks API.',
       'Translated complex Figma designs into accessible, performant UI components.',
-      'Collaborated with backend engineers to design and consume RESTful API contracts.',
-      'Implemented CI/CD pipelines using GitHub Actions for automated testing and deployment.',
     ],
     technologies: ['React', 'JavaScript', 'SASS', 'REST APIs', 'GitHub Actions', 'Figma'],
   },
