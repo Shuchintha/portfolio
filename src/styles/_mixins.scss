@@ -39,26 +39,25 @@
   }
 }
 
-// ─── Card Style (Modern Depth, No Borders) ───
+// ─── Card Style (Layered Elevation & Depth) ───
 @mixin card {
   border-radius: $border-radius;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.25, 0.4, 0.25, 1), 
+              box-shadow 0.4s cubic-bezier(0.25, 0.4, 0.25, 1),
+              background 0.4s ease;
   position: relative;
   z-index: 1;
 
   [data-theme='dark'] & {
-    background: linear-gradient(145deg, $dark-surface, lighten($dark-surface, 2%));
-    border: 1px solid rgba(255, 255, 255, 0.03); // Almost invisible, just for crisp edges
-    box-shadow: 
-      0 4px 24px -1px rgba(0, 0, 0, 0.6),
-      0 1px 2px rgba(0, 0, 0, 0.4);
+    background: $dark-surface;
+    border: none;
+    // Dual shadow: Inset highlight (top light source) + Wide bottom shadow
+    box-shadow: $dark-card-shadow;
   }
   [data-theme='light'] & {
     background: $light-surface;
     border: 1px solid rgba(0, 0, 0, 0.02);
-    box-shadow: 
-      0 10px 40px -10px rgba(0, 0, 0, 0.05),
-      0 2px 10px -2px rgba(0, 0, 0, 0.02);
+    box-shadow: $light-card-shadow;
   }
 
   &::after {
@@ -72,7 +71,7 @@
     z-index: -1;
     
     [data-theme='dark'] & {
-      box-shadow: 0 20px 60px -10px rgba(var(--accent-rgb), 0.15);
+      box-shadow: 0 20px 60px -10px rgba(var(--accent-rgb), 0.1);
     }
     [data-theme='light'] & {
       box-shadow: 0 20px 60px -10px rgba(var(--accent-rgb), 0.1);
@@ -80,15 +79,14 @@
   }
 
   &:hover {
-    transform: translateY(-6px) scale(1.005);
+    transform: translateY(-6px); // Tactile lift
     
     [data-theme='dark'] & {
-      border-color: rgba(255, 255, 255, 0.08);
-      background: linear-gradient(145deg, lighten($dark-surface, 3%), lighten($dark-surface, 5%));
-      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.7);
+      background: lighten($dark-surface, 3%); // Slightly closer to light source
+      box-shadow: $dark-card-shadow-hover;
     }
     [data-theme='light'] & {
-      box-shadow: 0 24px 48px -12px rgba(100, 100, 111, 0.15);
+      box-shadow: $light-card-shadow-hover;
     }
 
     &::after {

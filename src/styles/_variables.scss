@@ -7,17 +7,22 @@ $success:          #30D158;
 $warning:          #FFD60A;
 $danger:           #FF453A;
 
-// ─── Dark Theme (Apple-Inspired – deep black tones) ───
-$dark-bg:          #000000;
-$dark-bg-alt:      #0a0a0a;
-$dark-surface:     #1c1c1e;
-$dark-surface-alt: #2c2c2e;
-$dark-border:      #38383a;
-$dark-text:        #f5f5f7;
-$dark-text-muted:  #86868b;
-$dark-card-shadow:     0 2px 20px rgba(0, 0, 0, 0.5);
-$dark-card-shadow-lg:  0 8px 40px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 80, 158, 0.06);
-$dark-card-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 80, 158, 0.12);
+// ─── Dark Theme (Layered Elevation System) ───
+$dark-bg:          #020408; // Deepest navy/black base
+$dark-bg-alt:      #050A14;
+$dark-surface:     #0B1221; // Base navy elevated surface
+$dark-surface-alt: #152033;
+$dark-border:      transparent; // Removing flat borders
+$dark-text:        #E6E8EB;
+$dark-text-muted:  #94A3B8;
+
+// Elevation & Shadows
+$dark-highlight:       inset 0 1px 1px 0 rgba(100, 180, 255, 0.12);
+$dark-shadow-base:     rgba(0, 2, 8, 0.6);
+$dark-card-shadow:     $dark-highlight, 0 16px 36px -6px $dark-shadow-base;
+$dark-card-shadow-lg:  $dark-highlight, 0 24px 50px -10px $dark-shadow-base;
+$dark-card-shadow-hover: $dark-highlight, 0 32px 64px -12px $dark-shadow-base, 0 0 40px rgba(0, 80, 158, 0.15);
+
 $dark-glow:            0 0 20px rgba(0, 80, 158, 0.15), 0 0 60px rgba(0, 80, 158, 0.08);
 $dark-glow-strong:     0 0 30px rgba(0, 80, 158, 0.25), 0 0 80px rgba(0, 80, 158, 0.12);
 $dark-accent:       #00509E;
