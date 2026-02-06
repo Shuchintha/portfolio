@@ -4,6 +4,39 @@
 .contact {
   padding-top: calc($nav-height + $space-3xl);
   padding-bottom: $space-4xl;
+  position: relative;
+  overflow: hidden;
+
+  // Background Grid Decoration
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(rgba(var(--accent-rgb), 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--accent-rgb), 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  // Floating Orb/Glow for ambiance
+  &::after {
+    content: '';
+    position: absolute;
+    right: -10%;
+    bottom: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle at center, rgba(var(--accent-rgb), 0.05) 0%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: -1;
+  }
 
   .contact-container {
     display: grid;
@@ -21,6 +54,23 @@
 
   // ─── Left Side ───
   .contact-left {
+    position: relative;
+    
+    // Subtle backlight for text
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle at center, rgba(var(--accent-rgb), 0.08) 0%, transparent 60%);
+      filter: blur(40px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
     .contact-heading {
       font-family: $font-display;
       font-size: clamp(2rem, 5vw, 3.5rem);

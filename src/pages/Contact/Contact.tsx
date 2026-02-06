@@ -16,6 +16,22 @@ const Contact = () => {
 
   return (
     <section className="contact section" id="contact">
+      <motion.div
+        className="section-header"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <h2 className="section-title">
+          Get In <span className="accent">Touch</span>
+        </h2>
+        <div className="header-line" />
+        <p className="section-subtitle">
+          Have a question or want to work together?
+        </p>
+      </motion.div>
+
       <div className="contact-container">
         {/* Left Side: Call to Action */}
         <motion.div 
