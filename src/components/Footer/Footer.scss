@@ -7,12 +7,6 @@
   text-align: center;
   position: relative;
 
-  [data-theme='dark'] & {
-    border-top: 1px solid $dark-border;
-  }
-  [data-theme='light'] & {
-    border-top: 1px solid $light-border;
-  }
 
   .footer-container {
     max-width: $max-width;
